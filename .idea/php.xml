@@ -16,7 +16,6 @@
       <path value="$PROJECT_DIR$/includes/vendor/phpunit/php-timer" />
       <path value="$PROJECT_DIR$/includes/vendor/fig/http-message-util" />
       <path value="$PROJECT_DIR$/includes/vendor/phpunit/php-file-iterator" />
-      <path value="$PROJECT_DIR$/includes/vendor/ocramius/package-versions" />
       <path value="$PROJECT_DIR$/includes/vendor/phpunit/php-code-coverage" />
       <path value="$PROJECT_DIR$/includes/vendor/phpunit/phpunit" />
       <path value="$PROJECT_DIR$/includes/vendor/doctrine/collections" />
@@ -24,7 +23,6 @@
       <path value="$PROJECT_DIR$/includes/vendor/doctrine/common" />
       <path value="$PROJECT_DIR$/includes/vendor/doctrine/annotations" />
       <path value="$PROJECT_DIR$/includes/vendor/doctrine/lexer" />
-      <path value="$PROJECT_DIR$/includes/vendor/doctrine/reflection" />
       <path value="$PROJECT_DIR$/includes/vendor/doctrine/dbal" />
       <path value="$PROJECT_DIR$/includes/vendor/psr/http-message" />
       <path value="$PROJECT_DIR$/includes/vendor/doctrine/persistence" />

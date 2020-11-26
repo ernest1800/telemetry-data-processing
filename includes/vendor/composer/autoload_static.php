@@ -187,7 +187,7 @@ class ComposerStaticInit0fae2453329bc48e49a1b63cff0ac7c6
         ),
         'PackageVersions\\' => 
         array (
-            0 => __DIR__ . '/..' . '/ocramius/package-versions/src/PackageVersions',
+            0 => __DIR__ . '/..' . '/composer/package-versions-deprecated/src/PackageVersions',
         ),
         'Monolog\\' => 
         array (
@@ -250,7 +250,6 @@ class ComposerStaticInit0fae2453329bc48e49a1b63cff0ac7c6
             0 => __DIR__ . '/..' . '/doctrine/common/lib/Doctrine/Common',
             1 => __DIR__ . '/..' . '/doctrine/event-manager/lib/Doctrine/Common',
             2 => __DIR__ . '/..' . '/doctrine/persistence/lib/Doctrine/Common',
-            3 => __DIR__ . '/..' . '/doctrine/reflection/lib/Doctrine/Common',
         ),
         'Dictionary\\' => 
         array (
@@ -277,6 +276,7 @@ class ComposerStaticInit0fae2453329bc48e49a1b63cff0ac7c6
     );
 
     public static $classMap = array (
+        'Attribute' => __DIR__ . '/..' . '/symfony/polyfill-php80/Resources/stubs/Attribute.php',
         'JsonException' => __DIR__ . '/..' . '/symfony/polyfill-php73/Resources/stubs/JsonException.php',
         'Normalizer' => __DIR__ . '/..' . '/symfony/polyfill-intl-normalizer/Resources/stubs/Normalizer.php',
         'PHPUnit\\Exception' => __DIR__ . '/..' . '/phpunit/phpunit/src/Exception.php',

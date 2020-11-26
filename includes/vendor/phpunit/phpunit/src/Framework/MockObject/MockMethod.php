@@ -193,7 +193,7 @@ final class MockMethod
         $deprecation = $this->deprecation;
 
         if (null !== $this->deprecation) {
-            $deprecation         = "The $this->className::$this->methodName method is deprecated ($this->deprecation).";
+            $deprecation         = "The {$this->className}::{$this->methodName} method is deprecated ({$this->deprecation}).";
             $deprecationTemplate = $this->getTemplate('deprecation.tpl');
 
             $deprecationTemplate->setVar([
@@ -230,7 +230,7 @@ final class MockMethod
 
     private function getTemplate(string $template): \Text_Template
     {
-        $filename = __DIR__ . \DIRECTORY_SEPARATOR . \DIRECTORY_SEPARATOR . $template;
+        $filename = __DIR__ . \DIRECTORY_SEPARATOR . 'Generator' . \DIRECTORY_SEPARATOR . $template;
 
         if (!isset(self::$templates[$filename])) {
             self::$templates[$filename] = new \Text_Template($filename);

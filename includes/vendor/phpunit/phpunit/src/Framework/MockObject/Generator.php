@@ -372,7 +372,7 @@ final class Generator
             );
         }
 
-        $options  = \array_merge($options, ['cache_wsdl' => \WSDL_CACHE_NONE]);
+        $options = \array_merge($options, ['cache_wsdl' => \WSDL_CACHE_NONE]);
 
         try {
             $client   = new \SoapClient($wsdlFile, $options);
@@ -918,10 +918,10 @@ final class Generator
                     $isInterface,
                     $additionalInterfaces
                 ),
-                'clone'             => $cloneTrait,
-                'mock_class_name'   => $mockClassName['className'],
-                'mocked_methods'    => $mockedMethods,
-                'method'            => $method,
+                'clone'           => $cloneTrait,
+                'mock_class_name' => $mockClassName['className'],
+                'mocked_methods'  => $mockedMethods,
+                'method'          => $method,
             ]
         );
 
@@ -1019,7 +1019,7 @@ final class Generator
 
     private function getTemplate(string $template): \Text_Template
     {
-        $filename = __DIR__ . \DIRECTORY_SEPARATOR . \DIRECTORY_SEPARATOR . $template;
+        $filename = __DIR__ . \DIRECTORY_SEPARATOR . 'Generator' . \DIRECTORY_SEPARATOR . $template;
 
         if (!isset(self::$templates[$filename])) {
             self::$templates[$filename] = new \Text_Template($filename);
@@ -1043,7 +1043,7 @@ final class Generator
             return false;
         }
 
-        $className  = \strtolower($method->getDeclaringClass()->getName());
+        $className = \strtolower($method->getDeclaringClass()->getName());
 
         return $methodName === $className;
     }
