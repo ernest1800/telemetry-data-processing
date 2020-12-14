@@ -10,7 +10,7 @@
  * @copyright De Montfort University
  */
 
-namespace Encryption;
+namespace Telemetry;
 
 class Base64Wrapper
 {

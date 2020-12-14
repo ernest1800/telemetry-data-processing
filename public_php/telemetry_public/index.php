@@ -1,7 +1,5 @@
 <?php
-/** index.php
-	* PHP program to demonstrate the usage of a soap server
-	*/
+/**Telemetry*/
 
 include 'telemetry/bootstrap.php';
 

@@ -1,38 +1,33 @@
 <?php
 /**
- * home.php
+ * displaymessages.php
  */
 
 use \Psr\Http\Message\ServerRequestInterface as Request;
 use \Psr\Http\Message\ResponseInterface as Response;
 
-$app->get('/', function(Request $request, Response $response) use ($app)
+$app->get('/displaymessages', function(Request $request, Response $response) use ($app)
 {
 
     $sid = session_id();
 
     $html_output = $this->view->render($response,
-        'home.html.twig',
+        'displaymessages.html.twig',
         [
             'css_path' => CSS_PATH,
             'landing_page' => LANDING_PAGE,
             'action' => 'loadmessages',
             'page_title' => APP_NAME,
             'page_heading_1' => APP_NAME,
-            'page_heading_2' => 'Telemetry Homepage',
-            'button_text_load' => 'Load Messages M2M',
-            'load_messages_page' => 'asd'
+            'page_heading_2' => 'Telemetry Messages',
+            'page_text_1' => 'This page should display messages from the SOAP server',
+            'button_text_back' => 'Back',
+            'home_page' => 'home',
         ]);
 
     processOutput($app, $html_output);
 
     return $html_output;
 
-})->setName('home');
+})->setName('displaymessages');
 
-function processOutput($app, $html_output)
-{
-    $process_output = $app->getContainer()->get('processOutput');
-    $html_output = $process_output->processOutput($html_output);
-    return $html_output;
-}

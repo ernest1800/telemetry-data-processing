@@ -3,6 +3,7 @@
   <component name="SshConfigs">
     <configs>
       <sshConfig authType="PASSWORD" host="mysql.tech.dmu.ac.uk" id="b6100eaa-3009-46f1-8eff-1252e6df7daa" port="4567" nameFormat="DESCRIPTIVE" username="p2508450" />
+      <sshConfig authType="PASSWORD" host="php.tech.dmu.ac.uk" id="32955575-d119-4762-ad1a-c092515bdf07" port="4567" nameFormat="DESCRIPTIVE" username="p2508450" />
     </configs>
   </component>
 </project>

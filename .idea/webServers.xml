@@ -3,14 +3,14 @@
   <component name="WebServers">
     <option name="servers">
       <webServer id="8c2b5251-946d-48ef-96d9-4884a8ac7e15" name="PHPSERVER" url="http://php.tech.dmu.ac.uk:6789/p2508450/">
-        <fileTransfer rootFolder="/home/p2508450" accessType="SFTP" host="mysql.tech.dmu.ac.uk" port="4567" sshConfigId="b6100eaa-3009-46f1-8eff-1252e6df7daa" sshConfig="p2508450@mysql.tech.dmu.ac.uk:4567 password">
+        <fileTransfer rootFolder="/home/p2508450" accessType="SFTP" host="php.tech.dmu.ac.uk" port="4567" sshConfigId="32955575-d119-4762-ad1a-c092515bdf07" sshConfig="p2508450@php.tech.dmu.ac.uk:4567 password">
           <advancedOptions>
             <advancedOptions dataProtectionLevel="Private" passiveMode="true" shareSSLContext="true" />
           </advancedOptions>
         </fileTransfer>
       </webServer>
       <webServer id="2cc85910-46ed-4d88-a72a-8eb6673e74cd" name="SQLSERVER">
-        <fileTransfer accessType="SFTP" host="mysql.tech.dmu.ac.uk" port="4567" sshConfigId="b6100eaa-3009-46f1-8eff-1252e6df7daa" sshConfig="p2508450@mysql.tech.dmu.ac.uk:4567 password">
+        <fileTransfer rootFolder="/home/p2508450" accessType="SFTP" host="mysql.tech.dmu.ac.uk" port="4567" sshConfigId="b6100eaa-3009-46f1-8eff-1252e6df7daa" sshConfig="p2508450@mysql.tech.dmu.ac.uk:4567 password">
           <advancedOptions>
             <advancedOptions dataProtectionLevel="Private" passiveMode="true" shareSSLContext="true" />
           </advancedOptions>

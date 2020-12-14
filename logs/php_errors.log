@@ -5,3 +5,64 @@
 [26-Nov-2020 20:25:02 UTC] PHP Warning:  PHP Startup: Unable to load dynamic library 'php_xml' (tried: c:/user/php/ext/php_xml (The specified module could not be found.), c:/user/php/ext/php_php_xml.dll (The specified module could not be found.)) in Unknown on line 0
 [26-Nov-2020 20:26:14 UTC] PHP Warning:  PHP Startup: Unable to load dynamic library 'php_xml' (tried: c:/user/php/ext/php_xml (The specified module could not be found.), c:/user/php/ext/php_php_xml.dll (The specified module could not be found.)) in Unknown on line 0
 [26-Nov-2020 20:26:14 UTC] PHP Warning:  PHP Startup: Unable to load dynamic library 'php_xml' (tried: c:/user/php/ext/php_xml (The specified module could not be found.), c:/user/php/ext/php_php_xml.dll (The specified module could not be found.)) in Unknown on line 0
+[01-Dec-2020 15:09:02 UTC] PHP Warning:  PHP Startup: Unable to load dynamic library 'php_xml' (tried: c:/user/php/ext/php_xml (The specified module could not be found.), c:/user/php/ext/php_php_xml.dll (The specified module could not be found.)) in Unknown on line 0
+[01-Dec-2020 15:09:03 UTC] PHP Warning:  PHP Startup: Unable to load dynamic library 'php_xml' (tried: c:/user/php/ext/php_xml (The specified module could not be found.), c:/user/php/ext/php_php_xml.dll (The specified module could not be found.)) in Unknown on line 0
+[01-Dec-2020 16:14:37 UTC] PHP Warning:  PHP Startup: Unable to load dynamic library 'php_xml' (tried: c:/user/php/ext/php_xml (The specified module could not be found.), c:/user/php/ext/php_php_xml.dll (The specified module could not be found.)) in Unknown on line 0
+[01-Dec-2020 16:14:37 UTC] PHP Warning:  PHP Startup: Unable to load dynamic library 'php_xml' (tried: c:/user/php/ext/php_xml (The specified module could not be found.), c:/user/php/ext/php_php_xml.dll (The specified module could not be found.)) in Unknown on line 0
+[06-Dec-2020 22:27:47 UTC] PHP Warning:  PHP Startup: Unable to load dynamic library 'php_xml' (tried: c:/user/php/ext/php_xml (The specified module could not be found.), c:/user/php/ext/php_php_xml.dll (The specified module could not be found.)) in Unknown on line 0
+[06-Dec-2020 22:27:48 UTC] PHP Warning:  PHP Startup: Unable to load dynamic library 'php_xml' (tried: c:/user/php/ext/php_xml (The specified module could not be found.), c:/user/php/ext/php_php_xml.dll (The specified module could not be found.)) in Unknown on line 0
+[06-Dec-2020 23:26:20 Europe/London] PHP Notice:  Undefined variable: detail_types in H:\p3t\phpappfolder\includes\country_details\app\settings.php on line 27
+[06-Dec-2020 23:26:20 Europe/London] PHP Stack trace:
+[06-Dec-2020 23:26:20 Europe/London] PHP   1. {main}() H:\p3t\phpappfolder\public_php\country_details_public\index.php:0
+[06-Dec-2020 23:26:20 Europe/London] PHP   2. include() H:\p3t\phpappfolder\public_php\country_details_public\index.php:6
+[06-Dec-2020 23:26:20 Europe/London] PHP   3. require() H:\p3t\phpappfolder\includes\country_details\bootstrap.php:5
+[14-Dec-2020 13:43:23 UTC] PHP Warning:  PHP Startup: Unable to load dynamic library 'php_xml' (tried: c:/user/php/ext/php_xml (The specified module could not be found.), c:/user/php/ext/php_php_xml.dll (The specified module could not be found.)) in Unknown on line 0
+[14-Dec-2020 13:43:24 UTC] PHP Warning:  PHP Startup: Unable to load dynamic library 'php_xml' (tried: c:/user/php/ext/php_xml (The specified module could not be found.), c:/user/php/ext/php_php_xml.dll (The specified module could not be found.)) in Unknown on line 0
+[14-Dec-2020 13:44:09 Europe/London] PHP Warning:  include(telemetry_public/bootstrap.php): failed to open stream: No such file or directory in H:\p3t\phpappfolder\public_php\telemetry_public\index.php on line 4
+[14-Dec-2020 13:44:09 Europe/London] PHP Stack trace:
+[14-Dec-2020 13:44:09 Europe/London] PHP   1. {main}() H:\p3t\phpappfolder\public_php\telemetry_public\index.php:0
+[14-Dec-2020 13:44:09 Europe/London] PHP Warning:  include(): Failed opening 'telemetry_public/bootstrap.php' for inclusion (include_path='.;H:\p3t\phpappfolder\includes') in H:\p3t\phpappfolder\public_php\telemetry_public\index.php on line 4
+[14-Dec-2020 13:44:09 Europe/London] PHP Stack trace:
+[14-Dec-2020 13:44:09 Europe/London] PHP   1. {main}() H:\p3t\phpappfolder\public_php\telemetry_public\index.php:0
+[14-Dec-2020 13:44:46 Europe/London] PHP Notice:  Undefined variable: detail_types in H:\p3t\phpappfolder\includes\country_details\app\settings.php on line 27
+[14-Dec-2020 13:44:46 Europe/London] PHP Stack trace:
+[14-Dec-2020 13:44:46 Europe/London] PHP   1. {main}() H:\p3t\phpappfolder\public_php\country_details_public\index.php:0
+[14-Dec-2020 13:44:46 Europe/London] PHP   2. include() H:\p3t\phpappfolder\public_php\country_details_public\index.php:6
+[14-Dec-2020 13:44:46 Europe/London] PHP   3. require() H:\p3t\phpappfolder\includes\country_details\bootstrap.php:5
+[14-Dec-2020 14:29:32 Europe/London] PHP Warning:  include(telemetry_public/bootstrap.php): failed to open stream: No such file or directory in H:\p3t\phpappfolder\public_php\telemetry_public\index.php on line 4
+[14-Dec-2020 14:29:32 Europe/London] PHP Stack trace:
+[14-Dec-2020 14:29:32 Europe/London] PHP   1. {main}() H:\p3t\phpappfolder\public_php\telemetry_public\index.php:0
+[14-Dec-2020 14:29:32 Europe/London] PHP Warning:  include(): Failed opening 'telemetry_public/bootstrap.php' for inclusion (include_path='.;H:\p3t\phpappfolder\includes') in H:\p3t\phpappfolder\public_php\telemetry_public\index.php on line 4
+[14-Dec-2020 14:29:32 Europe/London] PHP Stack trace:
+[14-Dec-2020 14:29:32 Europe/London] PHP   1. {main}() H:\p3t\phpappfolder\public_php\telemetry_public\index.php:0
+[14-Dec-2020 14:29:55 Europe/London] PHP Warning:  require(H:\p3t\phpappfolder\includes\telemetry/app/settings.php): failed to open stream: No such file or directory in H:\p3t\phpappfolder\includes\telemetry\bootstrap.php on line 5
+[14-Dec-2020 14:29:55 Europe/London] PHP Stack trace:
+[14-Dec-2020 14:29:55 Europe/London] PHP   1. {main}() H:\p3t\phpappfolder\public_php\telemetry_public\index.php:0
+[14-Dec-2020 14:29:55 Europe/London] PHP   2. include() H:\p3t\phpappfolder\public_php\telemetry_public\index.php:4
+[14-Dec-2020 14:29:55 Europe/London] PHP Fatal error:  require(): Failed opening required 'H:\p3t\phpappfolder\includes\telemetry/app/settings.php' (include_path='.;H:\p3t\phpappfolder\includes') in H:\p3t\phpappfolder\includes\telemetry\bootstrap.php on line 5
+[14-Dec-2020 14:29:55 Europe/London] PHP Stack trace:
+[14-Dec-2020 14:29:55 Europe/London] PHP   1. {main}() H:\p3t\phpappfolder\public_php\telemetry_public\index.php:0
+[14-Dec-2020 14:29:55 Europe/London] PHP   2. include() H:\p3t\phpappfolder\public_php\telemetry_public\index.php:4
+[14-Dec-2020 14:34:17 Europe/London] PHP Warning:  require(H:\p3t\phpappfolder\includes\telemetry/app/dependencies.php): failed to open stream: No such file or directory in H:\p3t\phpappfolder\includes\telemetry\bootstrap.php on line 15
+[14-Dec-2020 14:34:17 Europe/London] PHP Stack trace:
+[14-Dec-2020 14:34:17 Europe/London] PHP   1. {main}() H:\p3t\phpappfolder\public_php\telemetry_public\index.php:0
+[14-Dec-2020 14:34:17 Europe/London] PHP   2. include() H:\p3t\phpappfolder\public_php\telemetry_public\index.php:4
+[14-Dec-2020 14:34:17 Europe/London] PHP Fatal error:  require(): Failed opening required 'H:\p3t\phpappfolder\includes\telemetry/app/dependencies.php' (include_path='.;H:\p3t\phpappfolder\includes') in H:\p3t\phpappfolder\includes\telemetry\bootstrap.php on line 15
+[14-Dec-2020 14:34:17 Europe/London] PHP Stack trace:
+[14-Dec-2020 14:34:17 Europe/London] PHP   1. {main}() H:\p3t\phpappfolder\public_php\telemetry_public\index.php:0
+[14-Dec-2020 14:34:17 Europe/London] PHP   2. include() H:\p3t\phpappfolder\public_php\telemetry_public\index.php:4
+[14-Dec-2020 14:38:19 Europe/London] PHP Warning:  require(H:\p3t\phpappfolder\includes\telemetry/app/routes.php): failed to open stream: No such file or directory in H:\p3t\phpappfolder\includes\telemetry\bootstrap.php on line 19
+[14-Dec-2020 14:38:19 Europe/London] PHP Stack trace:
+[14-Dec-2020 14:38:19 Europe/London] PHP   1. {main}() H:\p3t\phpappfolder\public_php\telemetry_public\index.php:0
+[14-Dec-2020 14:38:19 Europe/London] PHP   2. include() H:\p3t\phpappfolder\public_php\telemetry_public\index.php:4
+[14-Dec-2020 14:38:19 Europe/London] PHP Fatal error:  require(): Failed opening required 'H:\p3t\phpappfolder\includes\telemetry/app/routes.php' (include_path='.;H:\p3t\phpappfolder\includes') in H:\p3t\phpappfolder\includes\telemetry\bootstrap.php on line 19
+[14-Dec-2020 14:38:19 Europe/London] PHP Stack trace:
+[14-Dec-2020 14:38:19 Europe/London] PHP   1. {main}() H:\p3t\phpappfolder\public_php\telemetry_public\index.php:0
+[14-Dec-2020 14:38:19 Europe/London] PHP   2. include() H:\p3t\phpappfolder\public_php\telemetry_public\index.php:4
+[14-Dec-2020 15:51:32 UTC] PHP Warning:  PHP Startup: Unable to load dynamic library 'php_xml' (tried: c:/user/php/ext/php_xml (The specified module could not be found.), c:/user/php/ext/php_php_xml.dll (The specified module could not be found.)) in Unknown on line 0
+[14-Dec-2020 15:51:33 UTC] PHP Warning:  PHP Startup: Unable to load dynamic library 'php_xml' (tried: c:/user/php/ext/php_xml (The specified module could not be found.), c:/user/php/ext/php_php_xml.dll (The specified module could not be found.)) in Unknown on line 0
+[14-Dec-2020 15:58:38 Europe/London] PHP Fatal error:  Cannot redeclare processOutput() (previously declared in H:\p3t\phpappfolder\includes\telemetry\app\routes\home.php:33) in H:\p3t\phpappfolder\includes\telemetry\app\routes\displaymessages.php on line 31
+[14-Dec-2020 15:58:38 Europe/London] PHP Stack trace:
+[14-Dec-2020 15:58:38 Europe/London] PHP   1. {main}() H:\p3t\phpappfolder\public_php\telemetry_public\index.php:0
+[14-Dec-2020 15:58:38 Europe/London] PHP   2. include() H:\p3t\phpappfolder\public_php\telemetry_public\index.php:4
+[14-Dec-2020 15:58:38 Europe/London] PHP   3. require() H:\p3t\phpappfolder\includes\telemetry\bootstrap.php:18
