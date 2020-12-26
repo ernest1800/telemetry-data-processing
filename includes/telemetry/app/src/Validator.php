@@ -67,42 +67,7 @@ class Validator
                 ]],
             'BEARER' => FILTER_SANITIZE_STRING,
             'MESSAGEREF' => FILTER_VALIDATE_INT,
-            'A' => ['filter' => FILTER_VALIDATE_INT,
-                'options' => [
-                    'default' => -1,
-                    'min_range' => 0,
-                    'max_range' => 1
-                ]
-            ],
-            'B' => ['filter' => FILTER_VALIDATE_INT,
-                'options' => [
-                    'default' => -1,
-                    'min_range' => 0,
-                    'max_range' => 1
-                ]
-            ],
-            'C' => ['filter' => FILTER_VALIDATE_INT,
-                'options' => [
-                    'default' => -1,
-                    'min_range' => 0,
-                    'max_range' => 1
-                ]
-            ],
-            'D' => ['filter' => FILTER_VALIDATE_INT,
-                'options' => [
-                    'default' => -1,
-                    'min_range' => 0,
-                    'max_range' => 1
-                ]
-            ],
-            'FAN' => ['filter' => FILTER_VALIDATE_INT,
-                'options' => [
-                    'default' => -1,
-                    'min_range' => 0,
-                    'max_range' => 1
-                ]],
-            'H_TEMP' => FILTER_VALIDATE_FLOAT,
-            'KEY' => FILTER_VALIDATE_INT,
+            'D_ID' => FILTER_SANITIZE_STRING,
         ];
 
         $args =  $args_meta + $this->messageArgs();
@@ -145,6 +110,8 @@ class Validator
     /**
      * standardized arguments for validating messages before adding to Db and also before
      * sending new settings to SOAP server.
+     * No device ID is checked as when sending settigns to soap server the device ID is appended onto the array if this
+     * function returns valid
      */
     private function messageArgs()
     {
