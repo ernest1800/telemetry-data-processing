@@ -1,0 +1,30 @@
+<?php
+
+namespace Telemetry;
+
+use PHPUnit\Framework\TestCase;
+
+class DoctrineSqlQueriesTest extends TestCase
+{
+
+    protected $doctrine_settings = [
+        'driver' => 'pdo_mysql',
+        'host' => 'localhost',
+        'dbname' => 'telemetry_db',
+        'port' => '3306',
+        'user' => 'telemetry_user',
+        'password' => 'telemetry_user_pass',
+        'charset' => 'utf8mb4'
+    ];
+
+    public function testStoreMessages()
+    {
+        $doctrineQueries = new DoctrineSqlQueries();
+
+    }
+
+    public function testRetrieveMessages()
+    {
+
+    }
+}

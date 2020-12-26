@@ -1,0 +1,65 @@
+<?php
+
+namespace Telemetry;
+
+class SoapWrapper
+{
+    private $wsdl;
+
+    public function __construct()
+    {
+        if(defined('WSDL')){
+            $this->wsdl = WSDL;
+        }
+        $this->wsdl = "";
+    }
+
+    public function __destruct()
+    {
+    }
+
+    /**
+     * @param $wsdl sets wsdl string for class
+     */
+    public function setWsdl($wsdl)
+    {
+        $this->wsdl = $wsdl;
+    }
+
+    /**
+     * @return \SoapClient|string
+     */
+    public function createSoapClient()
+    {
+        $soap_client_handle = false;
+        $soap_client_parameters = array();
+        $exception = '';
+
+        $soap_client_parameters = ['trace' => true, 'exceptions' => true];
+
+        try {
+            $soap_client_handle = new \SoapClient($this->wsdl, $soap_client_parameters);
+        } catch (\SoapFault $exception) {
+            $soap_client_handle = 'Ooops - something went wrong when connecting to the data supplier.  Please try again later';
+        }
+        return $soap_client_handle;
+    }
+
+    public function performSoapCallPeek($soap_client)
+    {
+        $soap_call_result = null;
+        $raw_xml = '';
+
+        if ($soap_client) {
+            try {
+                $webservice_call_result = $soap_client->peekMessages("20_2508450", "PapaJohn1234", 100, 447817814149, 44);
+                if ($webservice_call_result) {
+                    $soap_call_result = $webservice_call_result;
+                }
+            } catch (\SoapFault $exception) {
+                $soap_call_result = $exception;
+            }
+        }
+        return $soap_call_result;
+    }
+}

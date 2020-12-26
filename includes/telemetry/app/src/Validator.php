@@ -1,52 +1,192 @@
 <?php
+/**
+ * Validator
+ *
+ * This class is responsible for validating data
+ * Data downloaded from the soap server is checked to make sure it is from a registered device
+ * Data downloaded is sanitized and validated and valid associated array is returned
+ *
+ * @author P2508450
+ */
 
-namespace Country;
+namespace Telemetry;
 
 class Validator
 {
-    public function __construct() { }
-
-    public function __destruct() { }
-
-    public function validateCountryCode($country_code_to_check)
+    public function __construct()
     {
-        $checked_country = false;
-        if (isset($country_code_to_check))
-        {
-            if (!empty($country_code_to_check))
-            {
-                if (strlen($country_code_to_check) == 2)
-                {
-                    $checked_country = $country_code_to_check;
+    }
+
+    public function __destruct()
+    {
+    }
+
+    /**
+     * checks if the device ID is ours
+     */
+    public function checkDeviceID($device_id_to_check, $d_id)
+    {
+        return ($device_id_to_check == $d_id);
+
+    }
+
+    /**
+     * Validates array of tainted messages
+     * @param $tainted_messages array
+     * @return array of validated messaged
+     */
+    public function validateMessages($tainted_messages, $d_id)
+    {
+        $cleaned_messages = [];
+        foreach ($tainted_messages as $tainted_message) {
+            $cleaned_message = $this->validateMessage($tainted_message);
+            //check if message sent from our device
+            if (isset($cleaned_message['D_ID'])) {
+                if ($this->checkDeviceID($cleaned_message['D_ID'], $d_id)) {
+                    $cleaned_messages[] = $cleaned_message;
                 }
             }
-            else
-            {
-                $checked_country = 'none selected';
-            }
         }
-        return $checked_country;
+        return $cleaned_messages;
     }
 
-    public function validateDetailType($type_to_check)
+    /**
+     * This method validates a single parsed message and returns a santitized array of values
+     * @param $tainted_message
+     * @return array of checked values against arguments
+     */
+    private function validateMessage($tainted_message)
     {
-        $checked_detail_type = false;
-        $detail_types = DETAIL_TYPES;
+        $cleaned_message = [];
+        $args_meta = [
+            'SOURCEMSISDN' => FILTER_SANITIZE_STRING,
+            'DESTINATIONMSISDN' => FILTER_SANITIZE_STRING,
+            'RECEIVEDTIME' => ['filter' => FILTER_VALIDATE_REGEXP,
+                'options' => [
+                    'regexp' => '~^\d{2}\/\d{2}\/\d{4}\040\d{2}\:\d{2}\:\d{2}$~'
+                ]],
+            'BEARER' => FILTER_SANITIZE_STRING,
+            'MESSAGEREF' => FILTER_VALIDATE_INT,
+            'A' => ['filter' => FILTER_VALIDATE_INT,
+                'options' => [
+                    'default' => -1,
+                    'min_range' => 0,
+                    'max_range' => 1
+                ]
+            ],
+            'B' => ['filter' => FILTER_VALIDATE_INT,
+                'options' => [
+                    'default' => -1,
+                    'min_range' => 0,
+                    'max_range' => 1
+                ]
+            ],
+            'C' => ['filter' => FILTER_VALIDATE_INT,
+                'options' => [
+                    'default' => -1,
+                    'min_range' => 0,
+                    'max_range' => 1
+                ]
+            ],
+            'D' => ['filter' => FILTER_VALIDATE_INT,
+                'options' => [
+                    'default' => -1,
+                    'min_range' => 0,
+                    'max_range' => 1
+                ]
+            ],
+            'FAN' => ['filter' => FILTER_VALIDATE_INT,
+                'options' => [
+                    'default' => -1,
+                    'min_range' => 0,
+                    'max_range' => 1
+                ]],
+            'H_TEMP' => FILTER_VALIDATE_FLOAT,
+            'KEY' => FILTER_VALIDATE_INT,
+        ];
 
-        if (in_array($type_to_check, $detail_types) === true)
-        {
-            $checked_detail_type = $type_to_check;
+        $args =  $args_meta + $this->messageArgs();
+
+        $checked_value = filter_var_array($tainted_message, $args);
+        if (!(
+            in_array(null, $checked_value, true) ||
+            in_array(false, $checked_value, true) ||
+            in_array(-1, $checked_value
+            ))) {
+            $cleaned_message = $checked_value;
         }
 
-        return $checked_detail_type;
+        return $cleaned_message;
     }
 
-    public function validateDownloadedData($tainted_data)
+    /**
+     * This method validates data passed from the sendsettings form to be sent as a message to the soap server
+     * @param $tainted_settings
+     * @return array|mixed
+     */
+    public function validateSettingsData($tainted_settings)
     {
-        $validated_string_data = '';
+        $cleaned_settings = [];
+        $args = $this->messageArgs();
 
-        $validated_string_data = filter_var($tainted_data, FILTER_SANITIZE_STRING);
+        $checked_value = filter_var_array($tainted_settings, $args);
+        if (!(
+            in_array(null, $checked_value, true) ||
+            in_array(false, $checked_value, true) ||
+            in_array(-1, $checked_value
+            ))) {
+            $cleaned_settings = $checked_value;
+        }
 
-        return $validated_string_data;
+        return $cleaned_settings;
+
     }
+
+    /**
+     * standardized arguments for validating messages before adding to Db and also before
+     * sending new settings to SOAP server.
+     */
+    private function messageArgs()
+    {
+        $args = [
+            'A' => ['filter' => FILTER_VALIDATE_INT,
+                'options' => [
+                    'default' => -1,
+                    'min_range' => 0,
+                    'max_range' => 1
+                ]
+            ],
+            'B' => ['filter' => FILTER_VALIDATE_INT,
+                'options' => [
+                    'default' => -1,
+                    'min_range' => 0,
+                    'max_range' => 1
+                ]
+            ],
+            'C' => ['filter' => FILTER_VALIDATE_INT,
+                'options' => [
+                    'default' => -1,
+                    'min_range' => 0,
+                    'max_range' => 1
+                ]
+            ],
+            'D' => ['filter' => FILTER_VALIDATE_INT,
+                'options' => [
+                    'default' => -1,
+                    'min_range' => 0,
+                    'max_range' => 1
+                ]
+            ],
+            'FAN' => ['filter' => FILTER_VALIDATE_INT,
+                'options' => [
+                    'default' => -1,
+                    'min_range' => 0,
+                    'max_range' => 1
+                ]],
+            'H_TEMP' => FILTER_VALIDATE_FLOAT,
+            'KEY' => FILTER_VALIDATE_INT,
+        ];
+        return $args;
+    }
+
 }

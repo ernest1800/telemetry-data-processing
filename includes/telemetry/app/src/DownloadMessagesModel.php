@@ -1,11 +1,15 @@
 <?php
 /**
+ * DownloadMessagesModel
  *
+ * Class used for downloading messages from SOAP server via SOAP call
+ *
+ * @author P2508450
  */
 
 namespace Telemetry;
 
-class MessagesDownloadModel
+class DownloadMessagesModel
 {
     private $result;
     private $soap_wrapper;
@@ -18,12 +22,20 @@ class MessagesDownloadModel
 
     public function __destruct(){}
 
+    /**
+     * sets soap_wrapper
+     * @param $soap_wrapper
+     */
     public function setSoapWrapper($soap_wrapper)
     {
         $this->soap_wrapper = $soap_wrapper;
     }
 
-    public function performMessagesRetrieval($wsdl = null)
+    /**
+     * Retrieves all messages stored on soap server and stores returned array in soap_call_result
+     * @param $wsdl
+     */
+    public function performMessagesRetrieval($wsdl)
     {
         $soap_call_result = null;
         $soap_client_handle = $this->soap_wrapper->createSoapClient();
@@ -32,11 +44,14 @@ class MessagesDownloadModel
         if ($soap_client_handle !== false && ! is_string($soap_client_handle))
         {
             $soap_call_result = $this->soap_wrapper->performSoapCallPeek($soap_client_handle);
-
             $this->result = $soap_call_result;
         }
     }
 
+    /**
+     * returns results array from retrieve messages call
+     * @return array
+     */
     public function getResult()
     {
         return $this->result;

@@ -1,0 +1,166 @@
+<?php
+/**
+ *  ValidatorTest
+ *  Validator is a model that validates multidimensional arrays where the child array is a message and the parent is an
+ *  array of messages
+ */
+
+namespace Telemetry;
+
+use Telemetry\Validator;
+use PHPUnit\Framework\TestCase;
+
+class ValidatorTest extends TestCase
+{
+
+    protected $correct_messages = [
+        [
+            'SOURCEMSISDN' => '447817814149',
+            'DESTINATIONMSISDN' => '447817814149',
+            'RECEIVEDTIME' => '14/12/2020 20:26:45',
+            'BEARER' => 'SMS',
+            'MESSAGEREF' => '0',
+            'D_ID' => 'AF72',
+            'A' => '1',
+            'B' => '1',
+            'C' => '1',
+            'D' => '0',
+            'FAN' => '0',
+            'H_TEMP' => '12.0',
+            'KEY' => '3',
+        ]
+        ,
+        [
+            'SOURCEMSISDN' => '447817814149',
+            'DESTINATIONMSISDN' => '447817814149',
+            'RECEIVEDTIME' => '14/12/2020 20:26:45',
+            'BEARER' => 'SMS',
+            'MESSAGEREF' => '0',
+            'D_ID' => 'AF72',
+            'A' => '1',
+            'B' => '1',
+            'C' => '1',
+            'D' => '0',
+            'FAN' => '0',
+            'H_TEMP' => '12.0',
+            'KEY' => '3',
+        ]
+    ];
+
+    protected $incorrect_messages = [
+        [
+            'UNEXPECTED_TAG' => '81234234',
+            'SOURCEMSISDN' => '447817814149',
+            'DESTINATIONMSISDN' => '447817814149',
+            'RECEIVEDTIME' => '14/12/2020 20:26:45',
+            'BEARER' => 'SMS',
+            'MESSAGEREF' => '0',
+            'D_ID' => 'AF72',
+            'A' => '1',
+            'B' => '1',
+            'C' => '1',
+            'D' => '0',
+            'FAN' => '0',
+            'H_TEMP' => '12.0',
+            'KEY' => '3',
+        ]
+        ,
+        [
+            'SOURCEMSISDN' => '447817814149',
+            'DESTINATIONMSISDN' => '447817814149',
+            'RECEIVEDTIME' => '14/12/2020 20:26:45',
+            'BEARER' => 'SMS',
+            'MESSAGEREF' => '0',
+            'D_ID' => 'AF72',
+            'A' => '1',
+            'B' => '1',
+            'C' => '1',
+            'D' => '0',
+            'FAN' => '0',
+            'H_TEMP' => '12.0',
+            'KEY' => '3',
+        ]
+    ];
+
+    protected $bad_messages = [["bad" => "123"], ["bad" => "456"]];
+
+    protected $bad_result_expected = [
+        [
+            'SOURCEMSISDN' => null,
+            'DESTINATIONMSISDN' => null,
+            'RECEIVEDTIME' => null,
+            'BEARER' => null,
+            'MESSAGEREF' => null,
+            'D_ID' => null,
+            'A' => null,
+            'B' => null,
+            'C' => null,
+            'D' => null,
+            'FAN' => null,
+            'H_TEMP' => null,
+            'KEY' => null,
+        ]
+        ,
+        [
+            'SOURCEMSISDN' => null,
+            'DESTINATIONMSISDN' => null,
+            'RECEIVEDTIME' => null,
+            'BEARER' => null,
+            'MESSAGEREF' => null,
+            'D_ID' => null,
+            'A' => null,
+            'B' => null,
+            'C' => null,
+            'D' => null,
+            'FAN' => null,
+            'H_TEMP' => null,
+            'KEY' => null,
+        ]
+    ];
+
+    /**
+     * Test correct input. expect output to be equal to input
+     */
+    public function testValidateMessagesCorrect()
+    {
+        $expected = $this->correct_messages;
+        $validator = new Validator();
+        $result = $validator->validateMessages($this->correct_messages);
+        $this->assertEquals($expected, $result);
+    }
+
+    /**
+     * Test to see if single messasge is validated correctly
+     */
+    public function testValidateSingleMessage()
+    {
+        $expected = [$this->correct_messages[0]];
+        $validator = new Validator();
+        $result = $validator->validateMessages([$this->correct_messages[0]]);
+        $this->assertEquals($expected, $result);
+    }
+
+    /**
+     * Should return array with unrecognised tags omitted
+     */
+    public function testValidateMessagesUnrecognisedTag()
+    {
+        $expected = $this->correct_messages;
+        $validator = new Validator();
+        $result = $validator->validateMessages($this->incorrect_messages);
+        $this->assertEquals($expected, $result);
+    }
+
+    /**
+     *  Test unrecognised array
+     */
+    public function testValidateBadMessage()
+    {
+        $expected = $this->bad_result_expected;
+        $validator = new Validator();
+        $result = $validator->validateMessages($this->bad_messages);
+        $this->assertEquals($expected, $result);
+    }
+
+
+}

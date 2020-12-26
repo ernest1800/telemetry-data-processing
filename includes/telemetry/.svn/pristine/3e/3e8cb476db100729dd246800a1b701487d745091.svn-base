@@ -1,0 +1,120 @@
+<?php
+/**
+ * class to contain all database access using Doctrine's QueryBulder
+ *
+ * A QueryBuilder provides an API that is designed for conditionally constructing a DQL query in several steps.
+ *
+ * It provides a set of classes and methods that is able to programmatically build queries, and also provides
+ * a fluent API.
+ * This means that you can change between one methodology to the other as you want, or just pick a preferred one.
+ *
+ * @author P2508450
+ *
+ * From https://www.doctrine-project.org/projects/doctrine-orm/en/2.6/reference/query-builder.html
+ */
+
+namespace Telemetry;
+
+class DoctrineSqlQueries
+{
+    public function __construct(){}
+
+    public function __destruct(){}
+
+    /**
+     * takes array of messages as parameters. Saves each message ti DB
+     * @param $query_builder
+     * @param array $cleaned_parameters
+     * @return array of results from query
+     */
+    public static function queryStoreMessages($query_builder, array $cleaned_parameters)
+    {
+        $store_results = [];
+        foreach ($cleaned_parameters as $cleaned_parameter){
+            $store_result = self::queryStoreMessage($query_builder, $cleaned_parameter);
+            $store_results[] = $store_result;
+        }
+        return $store_results;
+    }
+
+    /**
+     *
+     * @param $query_builder
+     * @param array $cleaned_parameters message as array of key value pairs
+     * @return array outcome of store result
+     */
+    private static function queryStoreMessage($query_builder, array $cleaned_parameters)
+    {
+
+        $store_result = [];
+        $source_msisdn = $cleaned_parameters['SOURCEMSISDN'];
+        $dest_msisdn = $cleaned_parameters['DESTINATIONMSISDN'];
+        $bearer = $cleaned_parameters['BEARER'];
+        $message_ref = $cleaned_parameters['MESSAGEREF'];
+        $received_time = $cleaned_parameters['RECEIVEDTIME'];
+        $device_id = $cleaned_parameters['D_ID'];
+        $sensor_a = $cleaned_parameters['A'];
+        $sensor_b = $cleaned_parameters['B'];
+        $sensor_c = $cleaned_parameters['C'];
+        $sensor_d = $cleaned_parameters['D'];
+        $fan = $cleaned_parameters['FAN'];
+        $h_temp = $cleaned_parameters['H_TEMP'];
+        $last_key = $cleaned_parameters['KEY'];
+
+
+        $query_builder = $query_builder->insert('messages')
+            ->values([
+                'source_msisdn' => ':source_msisdn',
+                'dest_msisdn' => ':dest_msisdn',
+                'bearer' => ':bearer',
+                'message_ref' => ':message_ref',
+                'received_time' => ':received_time',
+                'device_id' => ':device_id',
+                'sensor_a' => ':sensor_a',
+                'sensor_b' => ':sensor_b',
+                'sensor_c' => ':sensor_c',
+                'sensor_d' => ':sensor_d',
+                'fan' => ':fan',
+                'h_temp' => ':h_temp',
+                'last_key' => ':last_key',
+            ])
+            ->setParameters([
+                'source_msisdn' => $source_msisdn,
+                'dest_msisdn' => $dest_msisdn,
+                'bearer' => $bearer,
+                'message_ref' => $message_ref,
+                'received_time' => $received_time,
+                'device_id' => $device_id,
+                'sensor_a' => $sensor_a,
+                'sensor_b' => $sensor_b,
+                'sensor_c' => $sensor_c,
+                'sensor_d' => $sensor_d,
+                'fan' => $fan,
+                'h_temp' => $h_temp,
+                'last_key' => $last_key,
+            ]);
+
+        $store_result['outcome'] = $query_builder->execute();
+        $store_result['sql_query'] = $query_builder->getSQL();
+
+        return $store_result;
+    }
+
+    /**
+     * Fetch all records from messages table
+     * @param $query_builder
+     * @return array of messages
+     */
+    public static function queryRetrieveMessages($query_builder)
+    {
+        $result = [];
+
+        $query_builder
+            ->select('*')
+            ->from('messages', 'u');
+        $query = $query_builder->execute();
+        $result = $query->fetchAll();
+
+        return $result;
+    }
+}

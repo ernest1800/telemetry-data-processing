@@ -2,10 +2,9 @@
 {% block content %}
     <div id="page-content-div">
         <h3>{{ page_heading_2 }}</h3>
-        <div class="menu-div">
-            <div>
-                <a href={{ load_messages_page }}> {{ button_text_load }} </a>
-            </div>
+        <div class="vert-div">
+            <a href={{ load_messages_page }}> {{ button_text_load }} </a>
+            <a href={{ send_settings_page }}> {{ button_text_send }} </a>
         </div>
     </div>
 {% endblock %}

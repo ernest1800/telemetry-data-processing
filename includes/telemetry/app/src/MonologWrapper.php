@@ -1,35 +1,35 @@
 <?php
 /**
- * Class for Logging using monolog
+ * MonologWrapper
+ * Wrapper for Logging using monolog
+ *
+ * @author P2508450
  */
 
 namespace Telemetry;
 
-class Logger
-{
-    private $dbHandle;
-    private
+use Monolog\Logger;
+use Monolog\Handler\StreamHandler;
 
+class MonologWrapper
+{
+    private $logger;
     public function __construct()
     {
+        $this->logger = new Logger('telemetry-app-log');
+        $this->logger->pushHandler(new StreamHandler(LOG_FILE_PATH, Logger::DEBUG));
     }
 
     public function __destruct()
     {
     }
 
-    public function setDbHandle($db_handle)
+    /**
+     * stores log using monolog
+     * @param $message
+     */
+    public function storeLog($message)
     {
-        $this->dbHandle = $this->dbHandle;
-    }
-
-    public function fetchDbConnectionResult()
-    {
-
-    }
-
-    public function storeLog()
-    {
-        return;
+        $this->logger->info($message);
     }
 }

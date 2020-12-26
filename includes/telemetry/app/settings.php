@@ -15,12 +15,25 @@ define('DIRSEP', DIRECTORY_SEPARATOR);
 $url_root = $css_path = $_SERVER['SCRIPT_NAME'];
 $url_root = implode('/', explode('/', $url_root, -1));
 $css_path = $url_root . '/css/standard.css';
+
+//unique ID to identify our messages
+$unique_identifier = "AF72";
+define('DEVICE_ID', $unique_identifier);
+
+//define destination msisdn
+$dest_msisdn = 447817814149;
+define('DEST_MSISDN', $dest_msisdn);
+
+//logging setting
+$log_file_path = "/p3t/phpappfolder/logs/testlog.log";
+define('LOG_FILE_PATH', $log_file_path);
+
 define('CSS_PATH', $css_path);
 define('APP_NAME', 'Telemetry Basic');
 define('LANDING_PAGE', $_SERVER['SCRIPT_NAME']);
 
-//define ('BCRYPT_ALGO', PASSWORD_DEFAULT);
-//define ('BCRYPT_COST', 12);
+$wsdl = 'https://m2mconnect.ee.co.uk/orange-soap/services/MessageServiceByCountry?wsdl';
+define('WSDL', $wsdl);
 
 $settings = [
     "settings" => [
@@ -33,15 +46,16 @@ $settings = [
             'twig' => [
                 'cache' => false,
                 'auto_reload' => true,
-            ]],
+            ]
+        ],
     ],
     'doctrine_settings' => [
         'driver' => 'pdo_mysql',
         'host' => 'localhost',
-        'dbname' => 'registered_users_db',
+        'dbname' => 'telemetry_db',
         'port' => '3306',
-        'user' => 'registered_user',
-        'password' => 'registered_user_password',
+        'user' => 'telemetry_user',
+        'password' => 'telemetry_user_pass',
         'charset' => 'utf8mb4'
     ],
 ];

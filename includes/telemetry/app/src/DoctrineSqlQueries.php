@@ -8,55 +8,134 @@
  * a fluent API.
  * This means that you can change between one methodology to the other as you want, or just pick a preferred one.
  *
+ * @author P2508450
+ *
  * From https://www.doctrine-project.org/projects/doctrine-orm/en/2.6/reference/query-builder.html
  */
 
-namespace Encryption;
+namespace Telemetry;
 
 class DoctrineSqlQueries
 {
-    public function __construct(){}
-
-    public function __destruct(){}
-
-    public static function queryStoreUserData($queryBuilder, array $cleaned_parameters, string $hashed_password)
+    public function __construct()
     {
-        $store_result = [];
-        $username = $cleaned_parameters['sanitised_username'];
-        $email = $cleaned_parameters['sanitised_email'];
-        $dietary_requirements = $cleaned_parameters['sanitised_requirements'];
+    }
 
-        $queryBuilder = $queryBuilder->insert('user_data')
+    public function __destruct()
+    {
+    }
+
+    /**
+     * takes array of messages as parameters. Saves each message to DB
+     * @param $query_builder
+     * @param array $cleaned_parameters
+     * @return array of results from query
+     */
+    public static function queryStoreMessages($query_builder, array $cleaned_array_of_messages)
+    {
+        $store_results = [];
+        foreach ($cleaned_array_of_messages as $cleaned_message) {
+            //$store_result = self::queryStoreMessage($query_builder, $cleaned_message);
+            $store_result = self::queryStoreMessageIfNotExists($query_builder, $cleaned_message);
+
+            //if message does not already exist in db then add to array
+            if ($store_result != false) {
+                $store_results[] = $store_result;
+            }
+        }
+        return $store_results;
+    }
+
+    /**
+     * Stores mesasge from soap server in database if message with that timestamp does not already exist to
+     * stop dupicate records being stored
+     * @param $query_builder
+     * @param $cleaned_message
+     * @return array|bool
+     */
+    private static function queryStoreMessageIfNotExists($query_builder, $cleaned_message)
+    {
+        //check if message of same timestamp exist in database
+        $query_builder->select('*')
+            ->from('messages', 'u')
+            ->where('received_time = :messageTimeToSearchFor')
+            ->setParameter('messageTimeToSearchFor', $cleaned_message['RECEIVEDTIME']);
+
+        $query = $query_builder->execute();
+        $result = $query->fetchAll();
+
+        //if message already exists then
+        if ($result) {
+            return false;
+        }
+
+
+        $store_result = [];
+        $source_msisdn = $cleaned_message['SOURCEMSISDN'];
+        $dest_msisdn = $cleaned_message['DESTINATIONMSISDN'];
+        $bearer = $cleaned_message['BEARER'];
+        $message_ref = $cleaned_message['MESSAGEREF'];
+        $received_time = $cleaned_message['RECEIVEDTIME'];
+        $device_id = $cleaned_message['D_ID'];
+        $sensor_a = $cleaned_message['A'];
+        $sensor_b = $cleaned_message['B'];
+        $sensor_c = $cleaned_message['C'];
+        $sensor_d = $cleaned_message['D'];
+        $fan = $cleaned_message['FAN'];
+        $h_temp = $cleaned_message['H_TEMP'];
+        $last_key = $cleaned_message['KEY'];
+
+
+        $query_builder = $query_builder->insert('messages')
             ->values([
-                'user_name' => ':name',
-                'email' => ':email',
-                'dietary' => ':diet',
-                'password' => ':password',
+                'source_msisdn' => ':source_msisdn',
+                'dest_msisdn' => ':dest_msisdn',
+                'bearer' => ':bearer',
+                'message_ref' => ':message_ref',
+                'received_time' => ':received_time',
+                'device_id' => ':device_id',
+                'sensor_a' => ':sensor_a',
+                'sensor_b' => ':sensor_b',
+                'sensor_c' => ':sensor_c',
+                'sensor_d' => ':sensor_d',
+                'fan' => ':fan',
+                'h_temp' => ':h_temp',
+                'last_key' => ':last_key',
             ])
             ->setParameters([
-                ':name' => $username,
-                ':email' => $email,
-                ':diet' => $dietary_requirements,
-                ':password' => $hashed_password
+                'source_msisdn' => $source_msisdn,
+                'dest_msisdn' => $dest_msisdn,
+                'bearer' => $bearer,
+                'message_ref' => $message_ref,
+                'received_time' => $received_time,
+                'device_id' => $device_id,
+                'sensor_a' => $sensor_a,
+                'sensor_b' => $sensor_b,
+                'sensor_c' => $sensor_c,
+                'sensor_d' => $sensor_d,
+                'fan' => $fan,
+                'h_temp' => $h_temp,
+                'last_key' => $last_key,
             ]);
 
-        $store_result['outcome'] = $queryBuilder->execute();
-        $store_result['sql_query'] = $queryBuilder->getSQL();
+        $store_result['outcome'] = $query_builder->execute();
+        $store_result['sql_query'] = $query_builder->getSQL();
 
         return $store_result;
     }
 
-    public static function queryRetrieveUserData($queryBuilder, array $cleaned_parameters)
+    /**
+     * Fetch all records from messages table
+     * @param $query_builder
+     * @return array of messages
+     */
+    public static function queryRetrieveMessages($query_builder)
     {
-        $retrieve_result = [];
-        $username = $cleaned_parameters['sanitised_username'];
-
-        $queryBuilder
-            ->select('password', 'email')
-            ->from('user_data', 'u')
-            ->where('user_name = ' .  $queryBuilder->createNamedParameter($username));
-
-        $query = $queryBuilder->execute();
+        $result = [];
+        $query_builder
+            ->select('*')
+            ->from('messages', 'u');
+        $query = $query_builder->execute();
         $result = $query->fetchAll();
 
         return $result;

@@ -21,8 +21,11 @@ $home = function(Request $request, Response $response) use ($app)
             'page_title' => APP_NAME,
             'page_heading_1' => APP_NAME,
             'page_heading_2' => 'Telemetry Homepage',
-            'button_text_load' => 'Load Messages M2M',
-            'load_messages_page' => 'displaymessages'
+            'button_text_load' => 'Load Telemetry Readings',
+            'button_text_send' => 'Send New Settings',
+            'load_messages_page' => 'displaymessages',
+            'send_settings_page' => 'sendsettings',
+
         ]);
 
     processOutput($app, $html_output);

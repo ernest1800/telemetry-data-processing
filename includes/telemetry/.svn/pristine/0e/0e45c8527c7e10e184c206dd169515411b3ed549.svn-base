@@ -1,0 +1,100 @@
+<?php
+
+namespace Telemetry;
+
+class Validator
+{
+    public function __construct() { }
+
+    public function __destruct() { }
+
+    /**
+     * checks if the device ID is ours
+     */
+    public function checkDeviceID($device_id_to_check)
+    {
+        return ($device_id_to_check == DEVICE_ID);
+    }
+
+    /**
+     * Validates array of tainted messages
+     * @param $tainted_messages array
+     * @return array of validated messaged
+     */
+    public function validateMessages($tainted_messages)
+    {
+        $cleaned_messages = [];
+        foreach($tainted_messages as $tainted_message){
+            $cleaned_message = $this->validateMessage($tainted_message);
+            $cleaned_messages[] = $cleaned_message;
+        }
+
+        return $cleaned_messages;
+    }
+
+    /**
+     * This method validates a single parsed message and returns a santitized array of values
+     * @param $tainted_message
+     * @return array of checked values against arguments
+     */
+    private function validateMessage($tainted_message)
+    {
+
+        $args = [
+            'SOURCEMSISDN' => FILTER_SANITIZE_STRING,
+            'DESTINATIONMSISDN' => FILTER_SANITIZE_STRING,
+            'RECEIVEDTIME' => ['filter'=>FILTER_VALIDATE_REGEXP,
+                'options'=>[
+                    'regexp'=>'~^\d{2}\/\d{2}\/\d{4}\040\d{2}\:\d{2}\:\d{2}$~'
+            ]],
+            'BEARER' => FILTER_SANITIZE_STRING,
+            'MESSAGEREF' => FILTER_VALIDATE_INT,
+            'D_ID' => FILTER_SANITIZE_STRING,
+            'A' => ['filter'=>FILTER_VALIDATE_INT,
+                'options'=>[
+                    'default'=>-1,
+                    'min' => 0,
+                    'max' => 1
+                ]
+            ],
+            'B' => ['filter'=>FILTER_VALIDATE_INT,
+                'options'=>[
+                    'default'=>-1,
+                    'min' => 0,
+                    'max' => 1
+                ]
+            ],
+            'C' => ['filter'=>FILTER_VALIDATE_INT,
+                'options'=>[
+                    'default'=>-1,
+                    'min' => 0,
+                    'max' => 1
+                ]
+            ],
+            'D' => ['filter'=>FILTER_VALIDATE_INT,
+                'options'=>[
+                    'default'=>-1,
+                    'min' => 0,
+                    'max' => 1
+                ]
+            ],
+            'FAN' => ['filter'=>FILTER_VALIDATE_INT,
+                'options'=>[
+                    'default'=>-1,
+                    'min' => 0,
+                    'max' => 1
+                ]],
+            'H_TEMP' => FILTER_VALIDATE_FLOAT,
+            'KEY' => FILTER_VALIDATE_INT,
+        ];
+
+        $checked_value=filter_var_array($tainted_message, $args);
+        if(!(in_array(false, $checked_value,true)|| in_array(-1, $checked_value)))
+        {
+            $cleaned_message = $checked_value;
+        }
+
+        return $cleaned_message;
+    }
+
+}

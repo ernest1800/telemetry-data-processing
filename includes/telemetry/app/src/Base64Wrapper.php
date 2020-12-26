@@ -6,6 +6,7 @@
  *
  * Encode/Decode the given string with base 64 encoding
  *
+ * modified by P2508450
  * @author CF Ingrams <cfi@dmu.ac.uk>
  * @copyright De Montfort University
  */

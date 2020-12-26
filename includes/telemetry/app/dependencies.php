@@ -17,18 +17,53 @@ $container['view'] = function ($container) {
     return $view;
 };
 
-$container['base64Wrapper'] = function ($container) {
-    $wrapper = new \Telemetry\Base64Wrapper();
-    return $wrapper;
-};
-
-$container['bcryptWrapper'] = function ($container) {
-    $wrapper = new \Encryption\BcryptWrapper();
-    return $wrapper;
-};
-
 $container['processOutput'] = function ($container) {
-    $model = new \Encryption\ProcessOutput();
+    $model = new \Telemetry\ProcessOutput();
     return $model;
+};
+
+$container['xmlParser'] = function ($container) {
+    $model = new \Telemetry\XmlParser();
+    return $model;
+};
+
+$container['xmlSerializer'] = function ($container) {
+    $model = new \Telemetry\XmlSerializer();
+    return $model;
+};
+
+$container['validator'] = function ($container) {
+    $validator = new \Telemetry\Validator();
+    return $validator;
+};
+
+$container['soapWrapper'] = function ($container) {
+    $validator = new \Telemetry\SoapWrapper();
+    return $validator;
+};
+
+$container['monologWrapper'] = function ($container) {
+    $wrapper = new \Telemetry\MonologWrapper();
+    return $wrapper;
+};
+
+$container['downloadMessagesModel'] = function ($container) {
+    $model = new \Telemetry\DownloadMessagesModel();
+    return $model;
+};
+
+$container['sendMessageModel'] = function ($container) {
+    $model = new \Telemetry\SendMessageModel();
+    return $model;
+};
+
+$container['doctrineSqlQueries'] = function ($container) {
+    $doctrine_sql_queries = new \Telemetry\DoctrineSqlQueries();
+    return $doctrine_sql_queries;
+};
+
+$container['messageFormatter'] = function ($container) {
+    $message_formatter = new \Telemetry\MessageFormatter();
+    return $message_formatter;
 };
 

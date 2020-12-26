@@ -1,12 +1,12 @@
 <?php
  /**
-  * MessageModelTest
+  * DownloadMessagesModelTest
   */
 namespace Telemetry;
 
 use PHPUnit\Framework\TestCase;
 
-class MessageModelTest extends TestCase
+class DownloadMessagesModelTest extends TestCase
 {
     protected $wsdl = 'https://m2mconnect.ee.co.uk/orange-soap/services/MessageServiceByCountry?wsdl';
 
