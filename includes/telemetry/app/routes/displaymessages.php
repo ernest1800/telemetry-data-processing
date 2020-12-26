@@ -128,7 +128,6 @@ function validateParsedMessages($app, $tainted_messages)
 
 function storeValidatedMessages($app, $cleaned_parameters)
 {
-
     $storage_result = [];
     $store_result = '';
 
@@ -149,7 +148,6 @@ function storeValidatedMessages($app, $cleaned_parameters)
             $result_outcomes[] = 'There appears to have been a problem when saving your details.  Please try again later.';
         }
     }
-
     return $result_outcomes;
 }
 

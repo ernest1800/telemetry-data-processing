@@ -150,7 +150,13 @@ class Validator
                     'min_range' => 0,
                     'max_range' => 1
                 ]],
-            'H_TEMP' => FILTER_VALIDATE_FLOAT,
+            'H_TEMP' => ['filter' => FILTER_VALIDATE_FLOAT,
+                'options' => [
+                    'default' => -1,
+                    'min_range' => -280,
+                    'max_range' => 99999
+                ]
+            ],
             'KEY' => FILTER_VALIDATE_INT,
         ];
         return $args;
