@@ -25,6 +25,7 @@ $home = function(Request $request, Response $response) use ($app)
             'button_text_send' => 'Send New Settings',
             'load_messages_page' => 'displaymessages',
             'send_settings_page' => 'sendsettings',
+            'home_message' => 'Welcome to the Telemetry App...'
 
         ]);
 

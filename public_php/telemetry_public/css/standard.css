@@ -6,8 +6,8 @@ html {
 
 body {
     color:black;
-    background-color: #545454;
-    font-family:arial, sans-serif;
+    background-color: #fefefe;
+    font-family: Arial, Helvetica, sans-serif;
     font-size:12pt;
 }
 
@@ -16,15 +16,7 @@ body {
 /***********************************************/
 a:link {
     color:#F4F4F4;
-    background-color:transparent;
-}
-a:hover {
-    color: blue;
-    background-color:transparent;
-}
-a:visited {
-    color:#FE482A;
-    background-color:transparent;
+    text-decoration: none;
 }
 
 /***********************************************/
@@ -65,42 +57,112 @@ a:visited {
     text-shadow:black;
     border:1px solid #F4F4F4;
 }
-.result {
-    color:inherit;
-    font-weight:bold;
-    text-shadow:black;
-}
-
-/***********************************************/
-/* horizontal line styles                      */
-/***********************************************/
-hr {
-    width:100%;
-    height:1px;
-}
-.deepline {
-    width:100%;
-    height:10px;
-    color:#0000FE;
-    background-color:#0000FF;
-}
 
 /* new classes by P2508450 */
+
+/* navbar styles */
+
+#navbar{
+    overflow: hidden;
+    background-color: #333;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    height: 60px;
+}
+
+#navbar .nav-item {
+    width: 120px;
+    height: 100%;
+    padding: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#navbar .nav-item:hover {
+    background-color: #cc0066;
+}
+
+#navbar .nav-item a {
+    text-align: center;
+}
+
+.info-div {
+    margin-top: 1rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #333;
+    height: 200px;
+}
+
+.info-div p {
+    color: #fff;
+}
+
+/* div styles */
+
 .vert-div {
-    background: #9e9e9e;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
 }
 
+.horiz-div {
+    padding: 1rem;
+}
+
 .button-rounded {
-    background: #0099FF;
-    border-radius: 2px;
+    background-color: #cc0066;
+    border-radius: 5px;
+    color: white;
+    padding: 1rem 1.5rem;
+    text-decoration: none;
+    margin: 1rem;
 }
 
 .button-rounded:hover {
     transition: 0.5ms;
     transform: scale(1.05);
-    box-shadow: 2px 2px 2px black;
+    box-shadow: 2px 2px black;
+}
+
+.message-container {
+    padding: 2rem;
+    background-color: red;
+    border-radius: 10px;
+    width: auto;
+    height: 120px;
+}
+
+/* Table styles P2508450*/
+
+#telemetry-readings {
+    font-family: Arial, Helvetica, sans-serif;
+    border-collapse: collapse;
+    width: 100%;
+    margin: 0px 20px 0px 20px;
+}
+
+#telemetry-readings td, #customers thead {
+    border: 1px solid #ddd;
+    padding: 8px;
+}
+
+#telemetry-readings tr:nth-child(even){
+    background-color: #f2f2f2;
+}
+
+#telemetry-readings tr:hover {
+    background-color: #cc0066;
+}
+
+#telemetry-readings thead {
+    padding-top: 12px;
+    padding-bottom: 12px;
+    text-align: left;
+    background-color: #cc0066;
+    color: white;
 }

@@ -1,7 +1,11 @@
 {% extends 'banner.html.twig' %}
 {% block content %}
     <div id="page-content-div">
-        <h3>{{ page_heading_2 }}</h3>
+        <div class="info-div">
+            <p>
+                {{ home_message }}
+            </p>
+        </div>
         <div class="vert-div">
             <a href={{ load_messages_page }} class="button-rounded"> {{ button_text_load }} </a>
             <a href={{ send_settings_page }} class="button-rounded"> {{ button_text_send }} </a>

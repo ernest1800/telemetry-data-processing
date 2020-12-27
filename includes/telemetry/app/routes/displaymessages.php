@@ -39,6 +39,8 @@ $app->get('/displaymessages', function (Request $request, Response $response) us
     //get data from DB
     $data_from_db = retrieveMessages($app);
 
+    //format data so that 0 = backwards, 1 = reverse on fan.
+
     sendConfirmationMessage($app);
 
     $html_output = $this->view->render($response,
@@ -57,8 +59,8 @@ $app->get('/displaymessages', function (Request $request, Response $response) us
                 "SOURCE",
                 "DEST",
                 "TIME RECEIVED",
-                "DEVICE ID",
                 "BEARER",
+                "DEVICE ID",
                 "SENSOR A",
                 "SENSOR B",
                 "SENSOR C",
@@ -67,6 +69,10 @@ $app->get('/displaymessages', function (Request $request, Response $response) us
                 "TEMP",
                 "KEY",
             ],
+            'text_sensor_on' => "ON",
+            'text_sensor_off' => "OFF",
+            'text_fan_fwd' => "FWD",
+            'text_fan_rev' => "REV",
         ]);
 
     processOutput($app, $html_output);
