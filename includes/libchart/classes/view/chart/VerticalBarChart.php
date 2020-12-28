@@ -1,6 +1,6 @@
 <?php
     /* Libchart - PHP chart library
-     * Copyright (C) 2005-2011 Jean-Marc Trémeaux (jm.tremeaux at gmail.com)
+     * Copyright (C) 2005-2011 Jean-Marc Trï¿½meaux (jm.tremeaux at gmail.com)
      * 
      * This program is free software: you can redistribute it and/or modify
      * it under the terms of the GNU General Public License as published by
@@ -14,13 +14,16 @@
      *
      * You should have received a copy of the GNU General Public License
      * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+     *
+     *
      * 
      */
     
     /**
      * Chart composed of vertical bars.
      *
-     * @author Jean-Marc Trémeaux (jm.tremeaux at gmail.com)
+     * @author Jean-Marc Trï¿½meaux (jm.tremeaux at gmail.com)
+     * Modified by P2508450
      */
     class VerticalBarChart extends BarChart {
         /**
@@ -34,11 +37,16 @@
          * @param integer width of the image
          * @param integer height of the image
          */
-        public function VerticalBarChart($width = 600, $height = 250) {
+        public function __construct($width = 600, $height = 250)
+        {
             parent::BarChart($width, $height);
 
             $this->emptyToFullRatio = 1 / 5;
             $this->plot->setGraphPadding(new Padding(5, 30, 50, 50));
+        }
+
+        public function __destruct()
+        {
         }
 
         /**
