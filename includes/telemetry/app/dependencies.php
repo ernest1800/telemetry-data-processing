@@ -67,3 +67,7 @@ $container['messageFormatter'] = function ($container) {
     return $message_formatter;
 };
 
+$container['settingsChartModel'] = function ($container) {
+    $message_formatter = new \Telemetry\SettingsChartModel();
+    return $message_formatter;
+};

@@ -3,7 +3,7 @@
     <div id="page-content-div">
         <div class="vert-div">
             <h2> Messages from DB</h2>
-            <table id="telemetry-readings">
+            <table class="telemetry-readings">
                 <thead>
                     <tr>
                         {% for header in table_headers %}
@@ -21,10 +21,10 @@
                         <td>{{ message.received_time }}</td>
                         <td>{{ message.bearer }}</td>
                         <td>{{ message.device_id }}</td>
-                        <td>{{ message.sensor_a == 0 ? text_sensor_off : text_sensor_on }}</td>
-                        <td>{{ message.sensor_b == 0 ? text_sensor_off : text_sensor_on }}</td>
-                        <td>{{ message.sensor_c == 0 ? text_sensor_off : text_sensor_on }}</td>
-                        <td>{{ message.sensor_d == 0 ? text_sensor_off : text_sensor_on }}</td>
+                        <td>{{ message.switch_a == 0 ? text_switch_off : text_switch_on }}</td>
+                        <td>{{ message.switch_b == 0 ? text_switch_off : text_switch_on }}</td>
+                        <td>{{ message.switch_c == 0 ? text_switch_off : text_switch_on }}</td>
+                        <td>{{ message.switch_d == 0 ? text_switch_off : text_switch_on }}</td>
                         <td>{{ message.fan == 0 ? text_fan_rev : text_fan_fwd }}</td>
                         <td>{{ message.h_temp }}</td>
                         <td>{{ message.last_key }}</td>

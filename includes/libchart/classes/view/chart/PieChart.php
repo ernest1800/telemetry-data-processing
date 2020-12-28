@@ -33,7 +33,7 @@
          * @param integer height of the image
          */
         public function __construct($width = 600, $height = 250) {
-            parent::Chart($width, $height);
+            parent::__construct($width, $height);
             $this->plot->setGraphPadding(new Padding(15, 10, 30, 30));
         }
 

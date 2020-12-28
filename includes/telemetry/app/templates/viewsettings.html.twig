@@ -3,13 +3,38 @@
     <div id="page-content-div">
         <div class="info-div">
             <p>
-                {{ home_message }}
+
             </p>
         </div>
+        <div class="horiz-div">
+            <table class="telemetry-readings small">
+                <thead>
+                <tr>
+                    <td>
+                        {{ thead_1 }}
+                    </td>
+                    <td>
+                        {{ thead_2 }}
+                    </td>
+                </tr>
+                </thead>
+                <tbody>
+                {% for setting_name, setting_value in current_settings %}
+                    <tr>
+                        <td>
+                            {{ setting_name }}
+                        </td>
+                        <td>
+                            {{ setting_value }}
+                        </td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+            <img src= {{ chart_location }}>
+        </div>
         <div class="vert-div">
-            <a href={{ view_settings_page }} class="button-rounded"> {{ button_text_view }} </a>
-            <a href={{ load_messages_page }} class="button-rounded"> {{ button_text_load }} </a>
-            <a href={{ send_settings_page }} class="button-rounded"> {{ button_text_send }} </a>
+            <a href={{ home_page }} class="button-rounded"> {{ button_text_back }} </a>
         </div>
     </div>
 {% endblock %}

@@ -15,3 +15,4 @@ require 'routes/home.php';
 require 'routes/displaymessages.php';
 require 'routes/sendsettings.php';
 require 'routes/processsettings.php';
+require 'routes/viewsettings.php';

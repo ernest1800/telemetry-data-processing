@@ -1,6 +1,10 @@
 <?php
 /**
  * displaymessages.php
+ *
+ * This route displays a history of all messages sent from the team's device.
+ *
+ * @author P2508450
  */
 
 use \Psr\Http\Message\ServerRequestInterface as Request;
@@ -61,16 +65,16 @@ $app->get('/displaymessages', function (Request $request, Response $response) us
                 "TIME RECEIVED",
                 "BEARER",
                 "DEVICE ID",
-                "SENSOR A",
-                "SENSOR B",
-                "SENSOR C",
-                "SENSOR D",
+                "SWITCH A",
+                "SWITCH B",
+                "SWITCH C",
+                "SWITCH D",
                 "FAN",
                 "TEMP",
                 "KEY",
             ],
-            'text_sensor_on' => "ON",
-            'text_sensor_off' => "OFF",
+            'text_switch_on' => "ON",
+            'text_switch_off' => "OFF",
             'text_fan_fwd' => "FWD",
             'text_fan_rev' => "REV",
         ]);

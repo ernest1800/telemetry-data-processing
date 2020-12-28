@@ -1,19 +1,31 @@
 <?php
 /**
- * home.php
+ * viewsettings.php
+ *
+ * This route displays the most recent telemetry settings. (The current state of the circuit board)
+ *
+ * @author P2508450
  */
 
 use \Psr\Http\Message\ServerRequestInterface as Request;
 use \Psr\Http\Message\ResponseInterface as Response;
 
-//closure so route can have multiple names
-$home = function(Request $request, Response $response) use ($app)
-{
 
+//closure so route can have multiple names
+$view_settings = function (Request $request, Response $response) use ($app) {
+    $current_settings = [];
     $sid = session_id();
+    //get data from DB
+    $data_from_db = retrieveMessages($app);
+
+    if ($data_from_db) {
+        $current_settings = getCurrentSettings($data_from_db);
+    }
+
+    $chart_location = generateChart($app);
 
     $html_output = $this->view->render($response,
-        'home.html.twig',
+        'viewsettings.html.twig',
         [
             'css_path' => CSS_PATH,
             'landing_page' => LANDING_PAGE,
@@ -21,13 +33,12 @@ $home = function(Request $request, Response $response) use ($app)
             'page_title' => APP_NAME,
             'page_heading_1' => APP_NAME,
             'page_heading_2' => 'Telemetry Homepage',
-            'button_text_view' => 'View Telemetry',
-            'button_text_load' => 'View History',
-            'button_text_send' => 'Send New Settings',
-            'view_settings_page' => 'viewsettings',
-            'load_messages_page' => 'displaymessages',
-            'send_settings_page' => 'sendsettings',
-            'home_message' => 'Welcome to the Telemetry App...'
+            'button_text_back' => 'Back',
+            'home_page' => 'home',
+            'current_settings' => $current_settings,
+            'thead_1' => 'Setting Name',
+            'thead_2' => 'Reading',
+            'chart_location' => $chart_location,
 
         ]);
 
@@ -37,12 +48,23 @@ $home = function(Request $request, Response $response) use ($app)
 
 };
 
-$app->get('/', $home)->setName('home');
-$app->get('/home', $home)->setName('home');
+$app->get('/viewsettings', $view_settings)->setName('viewsettings');
 
-function processOutput($app, $html_output)
+/**
+ * Takes contents of messages table as a parameter then returns latest entry in array
+ * @param $messages_array
+ */
+function getCurrentSettings($messages_array)
 {
-    $process_output = $app->getContainer()->get('processOutput');
-    $html_output = $process_output->processOutput($html_output);
-    return $html_output;
+    return end($messages_array);
+}
+
+
+//TODO add to model
+function generateChart($app)
+{
+    $settings_chart_model = $app->getContainer()->get("settingsChartModel");
+    $settings_chart_model->createSettingsChart();
+    $chart_location = $settings_chart_model->getChartLocation();
+    return $chart_location;
 }
