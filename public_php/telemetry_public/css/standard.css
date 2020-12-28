@@ -26,7 +26,10 @@ a:link {
     text-align:center;
 }
 #page-content-div {
-
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
 }
 #clear-div {
     clear:both;
@@ -95,13 +98,30 @@ a:link {
     align-items: center;
     background-color: #333;
     height: 200px;
+    width: 100%;
 }
 
 .info-div p {
     color: #fff;
 }
 
-/* div styles */
+.result-container{
+    display: inline-block;
+    border-radius: 10px;
+    border: 2px solid #555;
+}
+
+.result-div{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 2rem;
+}
+
+#send-result-text {
+    margin: 1rem 0 4rem 0;
+}
 
 .vert-div {
     display: flex;
@@ -115,6 +135,13 @@ a:link {
     display: flex;
     justify-content: center;
     align-items: center;
+}
+
+.form-container {
+    padding: 1rem;
+    background-color: #cc0066;
+    display: inline-block;
+    margin: auto;
 }
 
 .button-rounded {
@@ -132,21 +159,13 @@ a:link {
     box-shadow: 2px 2px black;
 }
 
-.message-container {
-    padding: 2rem;
-    background-color: red;
-    border-radius: 10px;
-    width: auto;
-    height: 120px;
-}
-
 /* Table styles P2508450*/
 
 .telemetry-readings {
     font-family: Arial, Helvetica, sans-serif;
     border-collapse: collapse;
     width: 100%;
-    margin: 0px 20px 0px 20px;
+    margin: 0px 20px 40px 20px;
 }
 
 .telemetry-readings td, #customers thead {

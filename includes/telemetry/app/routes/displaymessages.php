@@ -15,6 +15,7 @@ use Doctrine\DBAL\DriverManager;
 $app->get('/displaymessages', function (Request $request, Response $response) use ($app) {
     $sid = session_id();
 
+    $error_text = "";
     //instantiate logger
 
     $l = $app->getContainer()->get("monologWrapper");
@@ -43,7 +44,12 @@ $app->get('/displaymessages', function (Request $request, Response $response) us
     //get data from DB
     $data_from_db = retrieveMessages($app);
 
-    //format data so that 0 = backwards, 1 = reverse on fan.
+
+    //if no data received then display warning in error text;
+    if(count($data_from_db) < 1){
+        $error_text = "No telemetry data found in database";
+    }
+
 
     sendConfirmationMessage($app);
 
@@ -77,6 +83,7 @@ $app->get('/displaymessages', function (Request $request, Response $response) us
             'text_switch_off' => "OFF",
             'text_fan_fwd' => "FWD",
             'text_fan_rev' => "REV",
+            'text_error' => $error_text,
         ]);
 
     processOutput($app, $html_output);

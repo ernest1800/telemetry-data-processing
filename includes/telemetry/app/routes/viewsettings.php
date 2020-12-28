@@ -22,7 +22,7 @@ $view_settings = function (Request $request, Response $response) use ($app) {
         $current_settings = getCurrentSettings($data_from_db);
     }
 
-    $chart_location = generateChart($app);
+    $chart_location = generateChart($app, $current_settings);
 
     $html_output = $this->view->render($response,
         'viewsettings.html.twig',
@@ -61,10 +61,14 @@ function getCurrentSettings($messages_array)
 
 
 //TODO add to model
-function generateChart($app)
+function generateChart($app, $current_settings)
 {
+    $temperature = 0;
+    if(isset($current_settings["h_temp"])){
+        $temperature = $current_settings["h_temp"];
+    }
     $settings_chart_model = $app->getContainer()->get("settingsChartModel");
-    $settings_chart_model->createSettingsChart();
+    $settings_chart_model->createSettingsChart($temperature);
     $chart_location = $settings_chart_model->getChartLocation();
     return $chart_location;
 }

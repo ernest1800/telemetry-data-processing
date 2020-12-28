@@ -2,11 +2,13 @@
 {% block content %}
     <div id="page-content-div">
         <h3>{{ page_heading_2 }}</h3>
-        <div class="vert-div">
-            <p> {{ result_text }}</p>
-            <div class="message-container">
-                <a href={{ send_page }} class="button-rounded"> {{ button_text_again }} </a>
-                <a href={{ home_page }} class="button-rounded"> {{ button_text_home }} </a>
+        <div class="result-container">
+            <div class="result-div">
+                <h4 id="send-result-text"> {{ result_text }}</h4>
+                <div class="message-container">
+                    <a href={{ send_page }} class="button-rounded"> {{ button_text_again }} </a>
+                    <a href={{ home_page }} class="button-rounded"> {{ button_text_home }} </a>
+                </div>
             </div>
         </div>
     </div>

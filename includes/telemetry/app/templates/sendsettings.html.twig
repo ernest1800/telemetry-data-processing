@@ -1,12 +1,10 @@
 {% extends 'banner.html.twig' %}
 {% block content %}
     <div id="page-content-div">
-        <h3>{{ page_heading_2 }}</h3>
-        <div class="send-form-div">
+        <div class="form-container">
             <p> {{ device_id_text }}</p>
             <form action={{ action }} method="post">
                 <div class="vert-div">
-
                     <fieldset>
                         <label>{{ label_text_a }}</label>
                         <label for="chk_switch_a_on"> {{ label_text_switch_on }} </label>
