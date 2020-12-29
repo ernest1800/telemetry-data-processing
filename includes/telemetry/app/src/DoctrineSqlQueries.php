@@ -33,10 +33,14 @@ class DoctrineSqlQueries
      */
     public static function queryStoreMessages($query_builder, array $cleaned_array_of_messages)
     {
+
+        //retrieve messages in database so that we can check if the message we intend to store already exists
+        $messages_from_db = self::queryRetrieveMessages($query_builder);
+
         $store_results = [];
         foreach ($cleaned_array_of_messages as $cleaned_message) {
             //$store_result = self::queryStoreMessage($query_builder, $cleaned_message);
-            $store_result = self::queryStoreMessageIfNotExists($query_builder, $cleaned_message);
+            $store_result = self::queryStoreMessageIfNotExists($query_builder, $cleaned_message, $messages_from_db);
 
             //if message does not already exist in db then add to array
             if ($store_result != false) {
@@ -47,28 +51,20 @@ class DoctrineSqlQueries
     }
 
     /**
-     * Stores mesasge from soap server in database if message with that timestamp does not already exist to
+     * Stores mesasge from soap server in database if message does not already exist to
      * stop dupicate records being stored
      * @param $query_builder
      * @param $cleaned_message
      * @return array|bool
      */
-    private static function queryStoreMessageIfNotExists($query_builder, $cleaned_message)
+    private static function queryStoreMessageIfNotExists($query_builder, $cleaned_message, $messages_in_db)
     {
-        //check if message of same timestamp exist in database
-        $query_builder->select('*')
-            ->from('messages', 'u')
-            ->where('received_time = :messageTimeToSearchFor')
-            ->setParameter('messageTimeToSearchFor', $cleaned_message['RECEIVEDTIME']);
-
-        $query = $query_builder->execute();
-        $result = $query->fetchAll();
-
-        //if message already exists then
-        if ($result) {
-            return false;
+        //if message with that timestamp already exists then return false
+        foreach ($messages_in_db as $message_in_db){
+            if($message_in_db["received_time"] == $cleaned_message["RECEIVEDTIME"]){
+                return false;
+            }
         }
-
 
         $store_result = [];
         $source_msisdn = $cleaned_message['SOURCEMSISDN'];

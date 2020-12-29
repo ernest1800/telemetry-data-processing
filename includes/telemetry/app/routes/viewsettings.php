@@ -13,13 +13,18 @@ use \Psr\Http\Message\ResponseInterface as Response;
 
 //closure so route can have multiple names
 $view_settings = function (Request $request, Response $response) use ($app) {
-    $current_settings = [];
     $sid = session_id();
+
     //get data from DB
     $data_from_db = retrieveMessages($app);
 
-    if ($data_from_db) {
+    //get latest message from array
+    $error_text = "";
+    $current_settings = [];
+    if (count($data_from_db) > 1) {
         $current_settings = getCurrentSettings($data_from_db);
+    }else{
+        $error_text = "No telemetry data found!";
     }
 
     $chart_location = generateChart($app, $current_settings);
@@ -39,6 +44,7 @@ $view_settings = function (Request $request, Response $response) use ($app) {
             'thead_1' => 'Setting Name',
             'thead_2' => 'Reading',
             'chart_location' => $chart_location,
+            'text_error' => $error_text,
 
         ]);
 

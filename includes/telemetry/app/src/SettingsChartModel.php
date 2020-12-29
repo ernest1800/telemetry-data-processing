@@ -5,6 +5,9 @@ namespace Telemetry;
 
 
 
+use VerticalBarChart;
+use XYDataSet;
+
 class SettingsChartModel
 {
     private $height;
@@ -31,14 +34,14 @@ class SettingsChartModel
     }
 
     /**
-     * creates a chart image using temperature data passed from database, store image at the defined location
+     * creates a chart png image using temperature data passed from database
      * @param int $temperature
      */
     public function createSettingsChart($temperature = 0)
     {
         require_once 'libchart/classes/libchart.php';
-        $chart = new \VerticalBarChart(500, 250);
-        $dataSet = new \XYDataSet();
+        $chart = new VerticalBarChart(500, 500);
+        $dataSet = new XYDataSet();
         $dataSet->addPoint(new \Point("Temperature", $temperature));
         $chart->setDataSet($dataSet);
         $chart->setTitle("Circuit Board reading");

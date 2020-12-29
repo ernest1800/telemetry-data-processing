@@ -52,7 +52,7 @@ class DoctrineSqlQueriesTest extends TestCase
         ]
     ];
 
-    public function testStoreMessages()
+    public function testStoreMessage()
     {
         $doctrineQueries = new DoctrineSqlQueries();
 
@@ -65,6 +65,24 @@ class DoctrineSqlQueriesTest extends TestCase
 
         $result_outcomes = [];
         $this->assertEquals([], $storage_result);
+    }
+
+    /**
+     * @throws \Doctrine\DBAL\Exception
+     * Test to see if returning array of arrays from db
+     */
+    public function testRetrieveMessages()
+    {
+        $doctrineQueries = new DoctrineSqlQueries();
+
+        $database_connection_settings = $this->doctrine_settings;
+        $doctrine_queries = new DoctrineSqlQueries();
+        $database_connection = DriverManager::getConnection($database_connection_settings);
+
+        $query_builder = $database_connection->createQueryBuilder();
+        $retrieve_result = $doctrine_queries::queryRetrieveMessages($query_builder);
+
+        $this->assertIsArray($retrieve_result[0]);
     }
 
 }

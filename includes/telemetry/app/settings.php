@@ -40,6 +40,13 @@ define('CSS_PATH', $css_path);
 define('APP_NAME', 'Telemetry Basic');
 define('LANDING_PAGE', $_SERVER['SCRIPT_NAME']);
 
+$nav_links = [
+    'Home' => 'home',
+    'View' => 'viewsettings',
+    'Send' => 'sendsettings',
+];
+define('NAV_LINKS', $nav_links);
+
 $wsdl = 'https://m2mconnect.ee.co.uk/orange-soap/services/MessageServiceByCountry?wsdl';
 define('WSDL', $wsdl);
 

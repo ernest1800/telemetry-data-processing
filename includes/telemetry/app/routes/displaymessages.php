@@ -15,43 +15,26 @@ use Doctrine\DBAL\DriverManager;
 $app->get('/displaymessages', function (Request $request, Response $response) use ($app) {
     $sid = session_id();
 
-    $error_text = "";
     //instantiate logger
-
     $l = $app->getContainer()->get("monologWrapper");
     $l->storeLog("SYM 1234567");
-
-    //parameters from the GET call
-    $tainted_parameters = $request->getParsedBody();
 
     $tainted_data = getMessages($app);
     //TODO check length and continue if length > 0 else display info
     //parse downloaded data
     $parsed_data = parseDownloadedArray($app, $tainted_data);
     //validate parsed data
-
     $validated_data = validateParsedMessages($app, $parsed_data);
-
-    //here we have all data from soap
-        //download data from db
-        //check if messages match
-        //save to db
-        //download new data from db
-
     //send validated data to db
     $storage_result = storeValidatedMessages($app, $validated_data);
-
     //get data from DB
     $data_from_db = retrieveMessages($app);
 
-
+    $error_text = "";
     //if no data received then display warning in error text;
     if(count($data_from_db) < 1){
         $error_text = "No telemetry data found in database";
     }
-
-
-    sendConfirmationMessage($app);
 
     $html_output = $this->view->render($response,
         'displaymessages.html.twig',
@@ -60,6 +43,7 @@ $app->get('/displaymessages', function (Request $request, Response $response) us
             'landing_page' => LANDING_PAGE,
             'action' => 'loadmessages',
             'page_title' => APP_NAME,
+            'nav_links' => NAV_LINKS,
             'page_heading_1' => APP_NAME,
             'page_heading_2' => 'Telemetry Messages',
             'button_text_back' => 'Back',
