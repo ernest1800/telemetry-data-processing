@@ -40,8 +40,6 @@ $send_settings = function(Request $request, Response $response) use ($app)
             'button_text_send' => "Send Settings",
         ]);
 
-    processOutput($app, $html_output);
-
     return $html_output;
 
 };

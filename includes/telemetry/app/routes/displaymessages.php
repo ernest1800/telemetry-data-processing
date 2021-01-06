@@ -72,8 +72,6 @@ $app->get('/displaymessages', function (Request $request, Response $response) us
             'text_error' => $error_text,
         ]);
 
-    processOutput($app, $html_output);
-
     return $html_output;
 
 })->setName('displaymessages');

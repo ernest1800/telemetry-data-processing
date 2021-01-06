@@ -17,10 +17,6 @@ $container['view'] = function ($container) {
     return $view;
 };
 
-$container['processOutput'] = function ($container) {
-    $model = new \Telemetry\ProcessOutput();
-    return $model;
-};
 
 $container['xmlParser'] = function ($container) {
     $model = new \Telemetry\XmlParser();
