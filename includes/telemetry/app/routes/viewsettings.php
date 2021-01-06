@@ -14,6 +14,7 @@ use \Psr\Http\Message\ResponseInterface as Response;
 //closure so route can have multiple names
 $view_settings = function (Request $request, Response $response) use ($app) {
     $sid = session_id();
+    require_once ("functions/soap_db_shared_funcs.php");
 
     $l = $app->getContainer()->get("monologWrapper");
 
@@ -63,8 +64,6 @@ $view_settings = function (Request $request, Response $response) use ($app) {
             'text_error' => $error_text,
 
         ]);
-
-    processOutput($app, $html_output);
 
     return $html_output;
 
