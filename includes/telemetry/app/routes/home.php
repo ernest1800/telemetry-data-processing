@@ -1,6 +1,10 @@
 <?php
 /**
  * home.php
+ *
+ * route for homepage with links to other pages
+ *
+ * @author P2508450
  */
 
 use \Psr\Http\Message\ServerRequestInterface as Request;

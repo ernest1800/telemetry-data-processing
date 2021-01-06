@@ -3,6 +3,7 @@
  * sendsettings.php
  *
  * the route for sending telemetry settings back to the device
+ * displays a form with settings options
  *
  * @author P2508450
  */

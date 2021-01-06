@@ -66,7 +66,13 @@ function getCurrentSettings($messages_array)
 }
 
 
-//TODO add to model
+//TODO add other things to model
+/**
+ * gebnerates a chart based on current telemetry settings (temperature)
+ * @param $app
+ * @param $current_settings
+ * @return mixed
+ */
 function generateChart($app, $current_settings)
 {
     $temperature = 0;

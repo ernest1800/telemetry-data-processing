@@ -156,7 +156,7 @@ a:link {
 .button-rounded:hover {
     transition: 0.5ms;
     transform: scale(1.05);
-    box-shadow: 2px 2px black;
+    box-shadow: 2px 2px 5px black;
 }
 
 /* Table styles P2508450*/

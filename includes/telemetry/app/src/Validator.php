@@ -5,6 +5,7 @@
  * This class is responsible for validating data
  * Data downloaded from the soap server is checked to make sure it is from a registered device
  * Data downloaded is sanitized and validated and valid associated array is returned
+ * Data entered via send settings form is checked and validated
  *
  * @author P2508450
  */
@@ -70,7 +71,7 @@ class Validator
             'D_ID' => FILTER_SANITIZE_STRING,
         ];
 
-        $args =  $args_meta + $this->messageArgs();
+        $args = $args_meta + $this->messageArgs();
 
         $checked_value = filter_var_array($tainted_message, $args);
         if (!(

@@ -5,6 +5,7 @@
  *
  * @author P2508450
  */
+
 namespace Telemetry;
 
 use phpDocumentor\Reflection\Types\Integer;
@@ -17,7 +18,7 @@ class SoapWrapper
     {
         if (defined('WSDL')) {
             $this->wsdl = WSDL;
-        }else{
+        } else {
             $this->wsdl = "";
         }
 

@@ -3,7 +3,6 @@
  * class XmlParser
  *
  * Parses a given XML string and returns an associative array
- * todo: include attributes in output - how?
  *
  * Modified by P2508450
  * @author CF Ingrams - cfi@dmu.ac.uk
@@ -14,10 +13,10 @@ namespace Telemetry;
 
 class XmlParser
 {
-    private $xml_parser;							  // handle to instance of the XML parser
-    private $parsed_data;	          // array holds extracted data
-    private $element_name;	            // store the current element name
-    private $temporary_attributes;	// temporarily store tag attributes and values
+    private $xml_parser;                              // handle to instance of the XML parser
+    private $parsed_data;              // array holds extracted data
+    private $element_name;                // store the current element name
+    private $temporary_attributes;    // temporarily store tag attributes and values
     private $xml_string_to_parse;
 
     public function __construct()
@@ -29,7 +28,7 @@ class XmlParser
     // release retained memory
     public function __destruct()
     {
-        if($this->xml_parser != null){
+        if ($this->xml_parser != null) {
             xml_parser_free($this->xml_parser);
         }
     }
@@ -99,10 +98,8 @@ class XmlParser
     private function open_element($parser, $element_name, $attributes)
     {
         $this->element_name = $element_name;
-        if (sizeof($attributes) > 0)
-        {
-            foreach ($attributes as $att_name => $att_value)
-            {
+        if (sizeof($attributes) > 0) {
+            foreach ($attributes as $att_name => $att_value) {
                 $tag_att = $element_name . "." . $att_name;
                 $this->temporary_attributes[$tag_att] = $att_value;
             }
@@ -116,13 +113,10 @@ class XmlParser
      */
     private function process_element_data($parser, $element_data)
     {
-        if (array_key_exists($this->element_name, $this->parsed_data) === false)
-        {
+        if (array_key_exists($this->element_name, $this->parsed_data) === false) {
             $this->parsed_data[$this->element_name] = $element_data;
-            if (sizeof($this->temporary_attributes) > 0)
-            {
-                foreach ($this->temporary_attributes as $tag_att_name => $tag_att_value)
-                {
+            if (sizeof($this->temporary_attributes) > 0) {
+                foreach ($this->temporary_attributes as $tag_att_name => $tag_att_value) {
                     $this->parsed_data[$tag_att_name] = $tag_att_value;
                 }
             }

@@ -2,7 +2,7 @@
 /**
  * displaymessages.php
  *
- * This route displays a history of all messages sent from the team's device.
+ * This route displays a history of all messages sent from the team's device in tabualr format.
  *
  * @author P2508450
  */
@@ -17,10 +17,10 @@ $app->get('/displaymessages', function (Request $request, Response $response) us
 
     //instantiate logger
     $l = $app->getContainer()->get("monologWrapper");
-    $l->storeLog("SYM 1234567");
+    $l->storeLog("Message History Accessed");
 
+    //download messages from server
     $tainted_data = getMessages($app);
-    //TODO check length and continue if length > 0 else display info
     //parse downloaded data
     $parsed_data = parseDownloadedArray($app, $tainted_data);
     //validate parsed data
@@ -77,8 +77,8 @@ $app->get('/displaymessages', function (Request $request, Response $response) us
 })->setName('displaymessages');
 
 /**
+ * Downloads messages from SOAP server
  * @param $app
- *
  * @return mixed
  */
 function getMessages($app)
@@ -93,7 +93,7 @@ function getMessages($app)
 }
 
 /**
- * iterates through downloaded data and parses xml string
+ * Iterates through downloaded data and parses xml string
  * @param $app
  * @param $downloaded_data data downloaded from SOAP server
  * @return array or parsed messages
@@ -102,9 +102,7 @@ function parseDownloadedArray($app, $downloaded_data)
 {
     $array_of_parsed_results = [];
     $xml_parser = $app->getContainer()->get('xmlParser');
-    //TODO check length return false if < 0
     foreach ($downloaded_data as $downloaded_datum) {
-
         $xml_parser->setXmlStringToParse($downloaded_datum);
         $xml_parser->parseTheXmlString();
         $parsed_result = $xml_parser->getParsedData();
@@ -127,6 +125,13 @@ function validateParsedMessages($app, $tainted_messages)
     return $cleaned_messages;
 }
 
+/**
+ * Stores validated messages in the SQL database
+ * @param $app
+ * @param $cleaned_parameters
+ * @return array
+ * @throws \Doctrine\DBAL\Exception
+ */
 function storeValidatedMessages($app, $cleaned_parameters)
 {
     $storage_result = [];
@@ -138,7 +143,6 @@ function storeValidatedMessages($app, $cleaned_parameters)
 
     $query_builder = $database_connection->createQueryBuilder();
     $storage_results = $doctrine_queries::queryStoreMessages($query_builder, $cleaned_parameters);
-
     $result_outcomes = [];
 
     //storage results returned in array. Check each outcome to see if successful

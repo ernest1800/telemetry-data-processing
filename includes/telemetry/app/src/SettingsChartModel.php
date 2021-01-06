@@ -1,9 +1,13 @@
 <?php
-
+/**
+ * SettingsChartModel
+ *
+ * @author P2508450
+ *
+ *
+ */
 
 namespace Telemetry;
-
-
 
 use VerticalBarChart;
 use XYDataSet;
@@ -25,12 +29,31 @@ class SettingsChartModel
     {
     }
 
-    public function setHeight($height){
+    /**
+     * sets desired height or chart png image
+     * @param $height
+     */
+    public function setHeight($height)
+    {
         $this->height = $height;
     }
 
-    public function setWidth($width){
+    /**
+     * sets desired width of hart png image
+     * @param $width
+     */
+    public function setWidth($width)
+    {
         $this->width = $width;
+    }
+
+    /**
+     * returns location where chart image is stored
+     * @return String
+     */
+    public function getChartLocation()
+    {
+        return $this->chart_location;
     }
 
     /**
@@ -59,15 +82,11 @@ class SettingsChartModel
      * creates the directory where the chart image is stored if it doesn't exist
      * @param $output_chart_location
      */
-    private function createChartDirectoryIfNotExists($output_chart_location){
-        if (!is_dir($output_chart_location))
-        {
+    private function createChartDirectoryIfNotExists($output_chart_location)
+    {
+        if (!is_dir($output_chart_location)) {
             mkdir($output_chart_location, 0755, true);
         }
-    }
-
-    public function getChartLocation(){
-        return $this->chart_location;
     }
 
 }
