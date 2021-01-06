@@ -17,10 +17,10 @@ $app->get('/displaymessages', function (Request $request, Response $response) us
 
     //instantiate logger
     $l = $app->getContainer()->get("monologWrapper");
-    $l->storeLog("Message History Accessed");
 
     //download messages from server
     $tainted_data = getMessages($app);
+    $l->storeLog("Message History Downloaded");
     //parse downloaded data
     $parsed_data = parseDownloadedArray($app, $tainted_data);
     //validate parsed data
@@ -34,6 +34,8 @@ $app->get('/displaymessages', function (Request $request, Response $response) us
     //if no data received then display warning in error text;
     if(count($data_from_db) < 1){
         $error_text = "No telemetry data found in database";
+    }else {
+        $l->storeLog("Messages Stored");
     }
 
     $html_output = $this->view->render($response,

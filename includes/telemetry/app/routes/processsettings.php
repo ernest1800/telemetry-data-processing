@@ -13,6 +13,7 @@ use \Psr\Http\Message\ResponseInterface as Response;
 
 $app->post('/processsettings', function (Request $request, Response $response) use ($app) {
 
+    $l = $app->getContainer()->get("monologWrapper");
     $send_result = "";
     $again_text = "Try Again";
 
@@ -34,8 +35,10 @@ $app->post('/processsettings', function (Request $request, Response $response) u
         if (is_integer($result)) {
             $send_result = "Setting successfully sent!";
             $again_text = "Update Settings Again";
+            $l->storeLog("Settings sent to server");
         } else {
             $send_result = "Error. Message not sent. Please Try again";
+            $l->storeLog("Settings failed to send");
         }
     }
     //display result

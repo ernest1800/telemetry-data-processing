@@ -13,8 +13,8 @@ use \Psr\Http\Message\ResponseInterface as Response;
 //closure so route can have multiple names
 $home = function(Request $request, Response $response) use ($app)
 {
-
-    $sid = session_id();
+    $l = $app->getContainer()->get("monologWrapper");
+    $l->storeLog("Home Accessed");
 
     $html_output = $this->view->render($response,
         'home.html.twig',
