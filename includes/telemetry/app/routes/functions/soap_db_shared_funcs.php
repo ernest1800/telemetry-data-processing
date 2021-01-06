@@ -15,7 +15,8 @@ use Doctrine\DBAL\DriverManager;
  * @return array
  * @throws \Doctrine\DBAL\Exception
  */
-function downloadAndStoreData($app){
+function downloadAndStoreData($app)
+{
     $tainted_data = getMessages($app);
     //parse downloaded data
     $parsed_data = parseDownloadedArray($app, $tainted_data);
@@ -104,4 +105,24 @@ function storeValidatedMessages($app, $cleaned_parameters)
         }
     }
     return $result_outcomes;
+}
+
+/**
+ * Retrieve stored messages from database
+ * @param $app
+ * @return mixed - result from SQL query
+ * @throws \Doctrine\DBAL\Exception
+ */
+function retrieveMessages($app)
+{
+    $retrieve_result = [];
+
+    $database_connection_settings = $app->getContainer()->get('doctrine_settings');
+    $doctrine_queries = $app->getContainer()->get('doctrineSqlQueries');
+    $database_connection = DriverManager::getConnection($database_connection_settings);
+
+    $query_builder = $database_connection->createQueryBuilder();
+    $retrieve_result = $doctrine_queries::queryRetrieveMessages($query_builder);
+
+    return $retrieve_result;
 }

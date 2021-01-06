@@ -80,26 +80,6 @@ $app->get('/displaymessages', function (Request $request, Response $response) us
 
 
 /**
- * Retrieve stored messages from database
- * @param $app
- * @return mixed - result from SQL query
- * @throws \Doctrine\DBAL\Exception
- */
-function retrieveMessages($app)
-{
-    $retrieve_result = [];
-
-    $database_connection_settings = $app->getContainer()->get('doctrine_settings');
-    $doctrine_queries = $app->getContainer()->get('doctrineSqlQueries');
-    $database_connection = DriverManager::getConnection($database_connection_settings);
-
-    $query_builder = $database_connection->createQueryBuilder();
-    $retrieve_result = $doctrine_queries::queryRetrieveMessages($query_builder);
-
-    return $retrieve_result;
-}
-
-/**
  * Send a confirmation message via soap call to send message method
  * @param $app
  */
@@ -109,7 +89,7 @@ function sendConfirmationMessage($app)
     $message_model = $app->getContainer()->get('sendMessageModel');
 
     $message_model->setSoapWrapper($soap_wrapper);
-    $message_model->performSendMessage(DEST_MSISDN, "Test message sent from SLIM");
+    $message_model->performSendMessage(DEST_MSISDN, "New message received from " + DEVICE_ID);
 
     return $message_model->getResult();
 
