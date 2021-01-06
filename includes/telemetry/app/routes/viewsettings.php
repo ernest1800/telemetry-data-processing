@@ -17,20 +17,13 @@ $view_settings = function (Request $request, Response $response) use ($app) {
     require_once ("functions/soap_db_shared_funcs.php");
 
     $l = $app->getContainer()->get("monologWrapper");
-
-    //check soap server for new messages
-    //TODO refactor this to be DRY (displaymessages has this sequence already)
-    $tainted_data = getMessages($app);
-    $l->storeLog("Message History Downloaded");
-    //parse downloaded data
-    $parsed_data = parseDownloadedArray($app, $tainted_data);
-    //validate parsed data
-    $validated_data = validateParsedMessages($app, $parsed_data);
-    //send validated data to db
-    $storage_result = storeValidatedMessages($app, $validated_data);
-    //TODO to here
-
     $l->storeLog("Current settings accessed");
+
+    $storage_result = downloadAndStoreData($app);
+
+    if($storage_result){
+        $l->storeLog("Messages downloaded from server and stored in DB");
+    }
 
     //get data from DB
     $data_from_db = retrieveMessages($app);

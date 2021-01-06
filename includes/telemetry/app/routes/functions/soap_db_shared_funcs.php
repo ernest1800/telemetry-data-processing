@@ -8,6 +8,25 @@
 use Doctrine\DBAL\DriverManager;
 
 /**
+ * This function downloads from SOAP, validates and stores data in DB.
+ * This function was moved here due to being used in 2 routes
+ * More maintainable of it is here
+ * @param $app
+ * @return array
+ * @throws \Doctrine\DBAL\Exception
+ */
+function downloadAndStoreData($app){
+    $tainted_data = getMessages($app);
+    //parse downloaded data
+    $parsed_data = parseDownloadedArray($app, $tainted_data);
+    //validate parsed data
+    $validated_data = validateParsedMessages($app, $parsed_data);
+    //send validated data to db
+    $storage_result = storeValidatedMessages($app, $validated_data);
+    return $storage_result;
+}
+
+/**
  * Downloads messages from SOAP server
  * @param $app
  * @return mixed
