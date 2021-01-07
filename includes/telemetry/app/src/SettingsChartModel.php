@@ -63,6 +63,7 @@ class SettingsChartModel
     public function createSettingsChart($temperature = 0)
     {
         require_once 'libchart/classes/libchart.php';
+
         $chart = new VerticalBarChart(500, 500);
         $dataSet = new XYDataSet();
         $dataSet->addPoint(new \Point("Temperature", $temperature));
@@ -70,7 +71,7 @@ class SettingsChartModel
         $chart->setTitle("Circuit Board reading");
 
         $output_chart_location = LIB_CHART_OUTPUT_PATH;
-        $this->createChartDirectoryIfNotExists($output_chart_location);
+        //$this->createChartDirectoryIfNotExists($output_chart_location);
 
         $output_chart_path = $output_chart_location . "/chart.png";
 

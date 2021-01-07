@@ -16,13 +16,8 @@ $url_root = $css_path = $_SERVER['SCRIPT_NAME'];
 $url_root = implode('/', explode('/', $url_root, -1));
 $css_path = $url_root . '/css/standard.css';
 
-$script_filename = $_SERVER["SCRIPT_FILENAME"];
-$arr_script_filename = explode('/' , $script_filename, '-1');
-$script_path = implode('/', $arr_script_filename) . '/';
-
-define ('LIB_CHART_OUTPUT_PATH', 'media/charts/');
-define ('LIB_CHART_FILE_PATH', $script_path);
-define ('LIB_CHART_CLASS_PATH', 'libchart/classes/');
+$chart_path = $url_root . '/media/charts';
+define ('LIB_CHART_OUTPUT_PATH', $chart_path);
 
 //unique ID to identify our messages
 $unique_identifier = "203110AY1";
