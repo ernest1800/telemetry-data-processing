@@ -16,7 +16,7 @@
     },
     "prefer-stable": true,
     "require": {
-        "php": "^7.2"
+        "php": ">=7.2"
     },
     "require-dev": {
         "phpunit/phpunit": "^8.2"
@@ -35,10 +35,10 @@
     },
     "autoload-dev": {
         "classmap": [
-          "tests/_fixture"
+            "tests/_fixture"
         ],
         "files": [
-          "tests/_fixture/callback_function.php"
+            "tests/_fixture/callback_function.php"
         ]
     },
     "extra": {
