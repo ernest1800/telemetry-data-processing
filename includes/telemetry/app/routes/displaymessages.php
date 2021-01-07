@@ -13,7 +13,7 @@ use Doctrine\DBAL\DriverManager;
 
 
 $app->get('/displaymessages', function (Request $request, Response $response) use ($app) {
-    require_once ("functions/soap_db_shared_funcs.php");
+    require_once("utils/soap_db_shared_funcs.php");
     $sid = session_id();
 
     //instantiate logger
@@ -50,6 +50,7 @@ $app->get('/displaymessages', function (Request $request, Response $response) us
             'nav_links' => NAV_LINKS,
             'page_heading_1' => APP_NAME,
             'page_heading_2' => 'Telemetry Messages',
+            'nav_links' => NAV_LINKS,
             'button_text_back' => 'Back',
             'home_page' => 'home',
             'messages_DB' => $data_from_db,

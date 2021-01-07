@@ -3,9 +3,9 @@
 {% block banner %}
 <div id="banner-div">
     <div id="navbar">
-        <div class="nav-item"><a href=>Hello</a></div>
-        <div class="nav-item"><a href="Hello">Hello</a></div>
-        <div class="nav-item"><a href="Hello">Hello</a></div>
+        {% for title, link in nav_links %}
+            <div class="nav-item"><a href={{ link }}>{{ title }}</a></div>
+        {% endfor %}
     </div>
 </div>
 <div id="clear-div"></div>

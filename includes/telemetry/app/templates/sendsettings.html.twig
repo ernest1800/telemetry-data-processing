@@ -40,7 +40,7 @@
 
                     <fieldset class="radio-group">
                         <p>{{ label_text_fan }}</p>
-                        <label for="radio_fan"> {{ label_text_fan_fwd }} </label>
+                        <label for="radio_fan_fwd"> {{ label_text_fan_fwd }} </label>
                         <input type="radio" name="FAN" value="1" id="radio_fan_fwd">
                         <label for="radio_fan_rev"> {{ label_text_fan_rev }} </label>
                         <input type="radio" name="FAN" value="0" id="radio_fan_rev">
@@ -50,15 +50,11 @@
                     <input type="text" maxlength="5" size="5" name="H_TEMP" id="txt_temp">
 
                     <label for="txt_key"> {{ label_text_key }} </label>
-                    <input type="number" maxlength="1" size="1" name="KEY" id="txt_key">
+                    <input type="number" maxlength="1" name="KEY" id="txt_key">
 
                     <input type="submit">
                 </div>
             </form>
         </div>
     </div>
-
-    <script>
-
-    </script>
 {% endblock %}

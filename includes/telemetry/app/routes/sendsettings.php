@@ -23,6 +23,7 @@ $send_settings = function(Request $request, Response $response) use ($app)
             'css_path' => CSS_PATH,
             'landing_page' => LANDING_PAGE,
             'page_title' => APP_NAME,
+            'nav_links' => NAV_LINKS,
             'action' => 'processsettings',
             'method' => 'post',
             'device_id_text' => "Update settings for: ".DEVICE_ID,

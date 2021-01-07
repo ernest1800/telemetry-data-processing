@@ -11,8 +11,7 @@ use \Psr\Http\Message\ServerRequestInterface as Request;
 use \Psr\Http\Message\ResponseInterface as Response;
 
 //closure so route can have multiple names
-$home = function(Request $request, Response $response) use ($app)
-{
+$home = function (Request $request, Response $response) use ($app) {
     $l = $app->getContainer()->get("monologWrapper");
     $l->storeLog("Home Accessed");
 
@@ -25,6 +24,7 @@ $home = function(Request $request, Response $response) use ($app)
             'page_title' => APP_NAME,
             'page_heading_1' => APP_NAME,
             'page_heading_2' => 'Telemetry Homepage',
+            'nav_links' => NAV_LINKS,
             'button_text_view' => 'View Telemetry',
             'button_text_load' => 'View History',
             'button_text_send' => 'Send New Settings',

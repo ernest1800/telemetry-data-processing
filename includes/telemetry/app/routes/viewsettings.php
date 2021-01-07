@@ -14,7 +14,7 @@ use \Psr\Http\Message\ResponseInterface as Response;
 //closure so route can have multiple names
 $view_settings = function (Request $request, Response $response) use ($app) {
     $sid = session_id();
-    require_once ("functions/soap_db_shared_funcs.php");
+    require_once("utils/soap_db_shared_funcs.php");
 
     $l = $app->getContainer()->get("monologWrapper");
     $l->storeLog("Current settings accessed");
@@ -48,6 +48,7 @@ $view_settings = function (Request $request, Response $response) use ($app) {
             'page_title' => APP_NAME,
             'page_heading_1' => APP_NAME,
             'page_heading_2' => 'Telemetry Homepage',
+            'nav_links' => NAV_LINKS,
             'button_text_back' => 'Back',
             'home_page' => 'home',
             'current_settings' => $current_settings,

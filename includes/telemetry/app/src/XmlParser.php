@@ -70,7 +70,7 @@ class XmlParser
 
         xml_set_object($this->xml_parser, $this);
 
-        // assign functions to be called when a new element is entered and exited
+        // assign utils to be called when a new element is entered and exited
         xml_set_element_handler($this->xml_parser, "open_element", "close_element");
 
         // assign the function to be used when an element contains data
