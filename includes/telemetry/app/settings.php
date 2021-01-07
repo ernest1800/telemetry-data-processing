@@ -25,7 +25,7 @@ define ('LIB_CHART_FILE_PATH', $script_path);
 define ('LIB_CHART_CLASS_PATH', 'libchart/classes/');
 
 //unique ID to identify our messages
-$unique_identifier = "AF72";
+$unique_identifier = "203110AY1";
 define('DEVICE_ID', $unique_identifier);
 
 //define destination msisdn
@@ -33,7 +33,7 @@ $dest_msisdn = 447817814149;
 define('DEST_MSISDN', $dest_msisdn);
 
 //logging setting
-$log_file_path = "/p3t/phpappfolder/logs/testlog.log";
+$log_file_path = "/phpappfolder/logs/log.log";
 define('LOG_FILE_PATH', $log_file_path);
 
 define('CSS_PATH', $css_path);
