@@ -23,6 +23,8 @@ $view_settings = function (Request $request, Response $response) use ($app) {
 
     if($storage_result){
         $l->storeLog("Messages downloaded from server and stored in DB");
+    }else{
+        $l->storeLog("No messages found on soap server");
     }
 
     //get data from DB

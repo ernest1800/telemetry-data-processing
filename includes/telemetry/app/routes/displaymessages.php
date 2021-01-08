@@ -21,14 +21,17 @@ $app->get('/displaymessages', function (Request $request, Response $response) us
 
     //download messages from server
     $tainted_data = getMessages($app);
-    $l->storeLog("Message History Downloaded");
-    //parse downloaded data
-    $parsed_data = parseDownloadedArray($app, $tainted_data);
-    //validate parsed data
-    $validated_data = validateParsedMessages($app, $parsed_data);
-    //send validated data to db
-    $storage_result = storeValidatedMessages($app, $validated_data);
+    $l->storeLog("Message History Downloading");
+
+    $storage_result = downloadAndStoreData($app);
     //get data from DB
+
+    //log download result
+    if($storage_result){
+        $l->storeLog("Messages downloaded from server and stored in DB");
+    }else{
+        $l->storeLog("No messages found on soap server");
+    }
 
     $data_from_db = retrieveMessages($app);
 

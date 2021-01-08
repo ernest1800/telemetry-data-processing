@@ -18,6 +18,10 @@ use Doctrine\DBAL\DriverManager;
 function downloadAndStoreData($app)
 {
     $tainted_data = getMessages($app);
+    //if messages is array then continue, if not return error
+    if(!is_array($tainted_data)){
+        return false;
+    }
     //parse downloaded data
     $parsed_data = parseDownloadedArray($app, $tainted_data);
     //validate parsed data
