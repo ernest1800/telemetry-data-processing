@@ -158,7 +158,12 @@ class Validator
                     'max_range' => 99999
                 ]
             ],
-            'KEY' => FILTER_VALIDATE_INT,
+            'KEY' => ['filter' => FILTER_VALIDATE_INT,
+                'options' => [
+                    'default' => -1,
+                    'min_range' => 0,
+                    'max_range' => 9
+                ]],
         ];
         return $args;
     }
