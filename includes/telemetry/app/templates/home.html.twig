@@ -2,14 +2,13 @@
 {% block content %}
     <div id="page-content-div">
         <div class="info-div">
-            <p>
-                {{ home_message }}
-            </p>
+            <h2>{{ home_message }}</h2>
         </div>
-        <div class="vert-div">
+        <div id="home-div">
             <a href={{ view_settings_page }} class="button-rounded"> {{ button_text_view }} </a>
             <a href={{ load_messages_page }} class="button-rounded"> {{ button_text_load }} </a>
             <a href={{ send_settings_page }} class="button-rounded"> {{ button_text_send }} </a>
         </div>
     </div>
 {% endblock %}
+

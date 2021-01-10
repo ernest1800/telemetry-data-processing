@@ -31,7 +31,7 @@ $home = function (Request $request, Response $response) use ($app) {
             'view_settings_page' => 'viewsettings',
             'load_messages_page' => 'displaymessages',
             'send_settings_page' => 'sendsettings',
-            'home_message' => 'Welcome to the Telemetry App...'
+            'home_message' => 'Telemetry Options'
 
         ]);
 
